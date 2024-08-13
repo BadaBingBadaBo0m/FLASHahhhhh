@@ -5,7 +5,7 @@ import SignupForm from "@/components/SignupModal";
 import { useModal } from "@/context/Modal";
 
 const Modals = () => {
-  const { setModalContent, setOnModalClose } = useModal();
+  const { setModalContent } = useModal();
 
   const openModal = () => {
     setModalContent(<SignupForm />)
