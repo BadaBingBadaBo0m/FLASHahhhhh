@@ -20,15 +20,23 @@ const Carousel = ({ slides }) => {
   };
 
   return (
-    <div className="overflow-hidden relative">
+    <div className="overflow-hidden relative h-3/5">
       <div
-        className={`flex transition ease-out duration-40`}
+        className={`flex shrink-0 transition ease-out duration-1000 h-full`}
         style={{
-          transform: `translateX(-${current * 100}%)`,
+          transform: `translateX(-${current * (100 / slides.length)}%)`,
+          width: `${slides.length * 100}%`
         }}
       >
         {slides.map((s) => {
-          return <img src={s} />;
+          return (
+            <div
+              className="w-full h-full flex justify-center items-center shrink-0"
+              style={{ width: `${100 / slides.length}%` }}
+            >
+              <h1>Bruh</h1>
+            </div>
+          )
         })}
       </div>
 
@@ -49,9 +57,8 @@ const Carousel = ({ slides }) => {
                 setCurrent(i);
               }}
               key={"circle" + i}
-              className={`rounded-full w-5 h-5 cursor-pointer  ${
-                i == current ? "bg-white" : "bg-gray-500"
-              }`}
+              className={`rounded-full w-5 h-5 cursor-pointer  ${i == current ? "bg-white" : "bg-gray-500"
+                }`}
             ></div>
           );
         })}

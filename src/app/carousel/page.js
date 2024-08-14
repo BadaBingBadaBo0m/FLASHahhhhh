@@ -1,6 +1,6 @@
 import Carousel from "@/components/Carousel";
 
-const CarouselTest = () =>{
+const CarouselTest = () => {
   let slides = [
     "https://i.pinimg.com/originals/51/82/ac/5182ac536727d576c78a9320ac62de30.jpg",
     "https://wallpapercave.com/wp/wp3386769.jpg",
@@ -9,7 +9,7 @@ const CarouselTest = () =>{
   ];
 
   return (
-    <div className="w-[60%] m-auto pt-11">
+    <div className="w-[60%] h-full m-auto pt-11">
       <Carousel slides={slides} />
     </div>
   );
