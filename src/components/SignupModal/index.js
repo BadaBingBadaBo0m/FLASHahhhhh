@@ -40,7 +40,7 @@ const SignupForm = () => {
           value={email}
           onChange={(e) => setEmail(e.target.value)}
           required
-          className='w-64 h-11 p-2 rounded-sm outline-none bg-nav-background border border-border-blue'
+          className='w-64 h-11 p-2 rounded-sm outline-none bg-nav-background border border-gray-400'
         />
         <input
           placeholder="Password"
@@ -50,7 +50,7 @@ const SignupForm = () => {
           required
           name="new-password"
           autoComplete='on'
-          className='w-64 h-11 p-2 rounded-sm outline-none bg-nav-background border border-border-blue'
+          className='w-64 h-11 p-2 rounded-sm outline-none bg-nav-background border border-gray-400'
         />
         <input
           placeholder="Confirm Password"
@@ -60,7 +60,7 @@ const SignupForm = () => {
           required
           name="new-password"
           autoComplete='on'
-          className='w-64 h-11 p-2 rounded-sm outline-none bg-nav-background border border-border-blue'
+          className='w-64 h-11 p-2 rounded-sm outline-none bg-nav-background border border-gray-400'
         />
 
         <button className='bg-blue-500 w-36 h-11 rounded-full font-bold text-lg' type="submit" onClick={handleSubmit}>Sign up</button>
