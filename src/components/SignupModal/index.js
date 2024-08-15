@@ -10,7 +10,7 @@ const SignupForm = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
-  const { setModalContent } = useModal()
+  const { setModalContent, closeModal } = useModal()
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -20,6 +20,7 @@ const SignupForm = () => {
         // Signed up 
         const user = userCredential.user;
         console.log("Signed up", user)
+        closeModal();
         return user;
         // ...
       })
