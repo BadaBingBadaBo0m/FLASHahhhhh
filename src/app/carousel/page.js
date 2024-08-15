@@ -2,14 +2,14 @@ import Carousel from "@/components/Carousel";
 
 const CarouselTest = () => {
   let slides = [
-    "https://i.pinimg.com/originals/51/82/ac/5182ac536727d576c78a9320ac62de30.jpg",
-    "https://wallpapercave.com/wp/wp3386769.jpg",
-    "https://wallpaperaccess.com/full/809523.jpg",
-    "https://getwallpapers.com/wallpaper/full/5/c/0/606489.jpg",
+    {prompt: "Hi how are ya", answer: "Good how about you"},
+    {prompt: "You are a weird feller", answer: "That's what she said"},
+    {prompt: "What's the best gum ever?", answer: "Charleston chew"},
+    {prompt: "Bruh you suck", answer: "I know"},
   ];
 
   return (
-    <div className="w-[60%] h-full m-auto pt-11">
+    <div className="w-[60%] h-full m-auto pt-11 ">
       <Carousel slides={slides} />
     </div>
   );

@@ -1,5 +1,6 @@
 "use client"
 
+import next from "next";
 import { useState } from "react";
 import {
   BsFillArrowRightCircleFill,
@@ -8,16 +9,22 @@ import {
 
 const Carousel = ({ slides }) => {
   let [current, setCurrent] = useState(0);
+  let [flipCard, setFlipCard] = useState(0);
 
-  let previousSlide = () => {
+  let previousSlide = (e) => {
+    e.preventDefault()
     if (current === 0) setCurrent(slides.length - 1);
     else setCurrent(current - 1);
+    setFlipCard(0);
   };
 
-  let nextSlide = () => {
+  let nextSlide = (e) => {
+    e.preventDefault()
     if (current === slides.length - 1) setCurrent(0);
     else setCurrent(current + 1);
+    setFlipCard(0);
   };
+
 
   return (
     <div className="overflow-hidden relative h-3/5">
@@ -34,13 +41,21 @@ const Carousel = ({ slides }) => {
               className="w-full h-full flex justify-center items-center shrink-0"
               style={{ width: `${100 / slides.length}%` }}
             >
-              <h1>Bruh</h1>
+              {flipCard ? (
+                <>
+                  <h1>{s.answer}</h1>
+                </>
+              ) : (
+                <>
+                  <h1>{s.prompt}</h1>
+                </>
+              )}
             </div>
           )
         })}
       </div>
 
-      <div className="absolute top-0 h-full w-full justify-between items-center flex text-white px-10 text-3xl">
+      <div className="absolute top-0 h-full w-full justify-between items-center flex text-white px-10 text-3xl z-40">
         <button onClick={previousSlide}>
           <BsFillArrowLeftCircleFill />
         </button>
