@@ -1,6 +1,7 @@
 import { Inter } from "next/font/google";
 import "./globals.css";
 import { ModalProvider, Modal } from "@/context/Modal";
+import NavBar from "@/components/NavBar";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -12,8 +13,9 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-      <body className={`${inter.className} h-screen`}>
+      <body className={`${inter.className}`}>
         <ModalProvider >
+          <NavBar />
           {children}
           <Modal />
         </ModalProvider>
