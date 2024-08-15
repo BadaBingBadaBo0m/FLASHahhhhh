@@ -58,11 +58,6 @@ const FlashCardTest = () =>{
     setNewCard({ question: "", answer: "" });
   }
 
-  const getOneDoc = async () => {
-    const currentSetSnap = await getDoc(currentSet);
-    console.log(currentSetSnap.data())
-  }
-
   console.log(decks)
 
   return (
