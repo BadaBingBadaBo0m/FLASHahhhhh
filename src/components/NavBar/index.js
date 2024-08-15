@@ -9,7 +9,7 @@ const NavBar = () => {
   const { setModalContent } = useModal();
 
   return (
-    <div className='flex justify-between p-5'>
+    <div className='flex justify-between p-5 bg-Navbar h-20'>
       <h1 className='flex items-center'>FLASH - <span className='text-xs ml-1'>ahhhhh</span></h1>
 
       <div id='nav-button-container'>
