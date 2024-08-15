@@ -5,7 +5,7 @@ import { db } from "../firebase";
 
 const FlashCardTest = () =>{
   const [cardSets, setCardSets] = useState([]);
-  const [currentSetId, setCurrentSetId] = useState("bs8s6JbYruUDOkZ6JEHj");
+  const [currentSetId, setCurrentSetId] = useState("HlwCElkzbESZb7g7JIwY");
   const currentSet = doc(db, "FlashCard-Set", currentSetId);
 
   useEffect(() => {
@@ -33,14 +33,19 @@ const FlashCardTest = () =>{
       answer: newCard.answer.trim(),
     };
     
-    const currentSet = doc(db, "FlashCard-Set", currentSetId);
+    const currentSet = doc(db, "FlashCard-Set", currentSetId)
+    const currentSetSnap = await getDoc(currentSet);
+
+    await setDoc(currentSet, {
+      Cards: [card]
+    })
     }
 
     const getOneDoc = async () => {
       const currentSetSnap = await getDoc(currentSet);
       console.log(currentSetSnap.data())
     }
-    
+
     getOneDoc();
 
   return (
@@ -56,7 +61,7 @@ const FlashCardTest = () =>{
           className="col-span-2 col-start-3 font-bold rounded-lg text-black h-10 p-3 text-lg"
           placeholder="Answer" 
           value={newCard.answer}
-          onChange={(e) => setCard({ ...newCard, answer: e.target.value })}
+          onChange={(e) => setNewCard({ ...newCard, answer: e.target.value })}
         />
         <button 
           onClick={addCard}
