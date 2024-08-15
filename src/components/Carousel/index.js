@@ -25,9 +25,14 @@ const Carousel = ({ slides }) => {
     setFlipCard(0);
   };
 
+  let flipSlide = (e) => {
+    e.preventDefault()
+    setFlipCard(!flipCard)
+  }
+
 
   return (
-    <div className="overflow-hidden relative h-3/5">
+    <div className="overflow-hidden relative h-3/5"> 
       <div
         className={`flex shrink-0 transition ease-out duration-1000 h-full`}
         style={{
@@ -55,7 +60,7 @@ const Carousel = ({ slides }) => {
         })}
       </div>
 
-      <div className="absolute top-0 h-full w-full justify-between items-center flex text-white px-10 text-3xl z-40">
+      <div className="absolute top-0 h-full w-full justify-between items-center flex text-white px-10 text-3xl">
         <button onClick={previousSlide}>
           <BsFillArrowLeftCircleFill />
         </button>
@@ -78,6 +83,7 @@ const Carousel = ({ slides }) => {
           );
         })}
       </div>
+      <div className="absolute h-[60%] w-[80%] left-[12%] top-[20%] border" onClick={flipSlide}></div>
     </div>
   );
 }
