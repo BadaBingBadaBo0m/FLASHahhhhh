@@ -39,6 +39,8 @@ const FlashCardTest = () =>{
     await setDoc(currentSet, {
       Cards: [...currentSetSnap.data().Cards, card]
     })
+
+    setNewCard({ question: "", answer: "" });
     }
 
     const getOneDoc = async () => {
