@@ -22,14 +22,12 @@ const SignupForm = () => {
         console.log("Signed up", user)
         closeModal();
         return user;
-        // ...
       })
       .catch((error) => {
         const errorCode = error.code;
         const errorMessage = error.message;
         console.log('error', errorMessage)
         return { errorCode, errorMessage }
-        // ..
       });
   }
 
