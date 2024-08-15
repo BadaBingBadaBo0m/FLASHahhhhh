@@ -3,10 +3,13 @@
 import React, { useState } from 'react';
 import { auth } from '@/app/firebase';
 import { signInWithEmailAndPassword } from 'firebase/auth';
+import { useModal } from '@/context/Modal';
+import SignupForm from '../SignupModal';
 
 const SignInForm = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const { setModalContent } = useModal()
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -32,7 +35,7 @@ const SignInForm = () => {
   return (
     <div className='text-black'>
       <form onSubmit={handleSubmit} className="flex flex-col w-96 h-96 p-8 items-center justify-between border-2 border-border-blue rounded-2xl bg-nav-background">
-        <h1 className='text-3xl'>Sign up</h1>
+        <h1 className='text-3xl'>Sign In</h1>
 
         <input
           placeholder="Email Address"
@@ -54,7 +57,7 @@ const SignInForm = () => {
         />
 
         <button className='bg-blue-500 w-36 h-11 rounded-full font-bold text-lg' type="submit" onClick={handleSubmit}>Sign up</button>
-        <div>Already have an account? <a className='cursor-pointer text-blue-500' onClick={() => router.push('/login')}>Login</a>!</div>
+        <div>Already have an account? <a className='cursor-pointer text-blue-500' onClick={() => setModalContent(<SignupForm />)}>Login</a>!</div>
       </form>
     </div>
   )

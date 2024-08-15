@@ -3,11 +3,14 @@
 import React, { useState } from 'react';
 import { auth } from '@/app/firebase';
 import { createUserWithEmailAndPassword } from 'firebase/auth';
+import { useModal } from '@/context/Modal';
+import SignInForm from '../SignInModal';
 
 const SignupForm = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
+  const { setModalContent } = useModal()
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -64,7 +67,7 @@ const SignupForm = () => {
         />
 
         <button className='bg-blue-500 w-36 h-11 rounded-full font-bold text-lg' type="submit" onClick={handleSubmit}>Sign up</button>
-        <div>Already have an account? <a className='cursor-pointer text-blue-500' onClick={() => router.push('/login')}>Login</a>!</div>
+        <div>Already have an account? <a className='cursor-pointer text-blue-500' onClick={() => setModalContent(<SignInForm />)}>Login</a>!</div>
       </form>
     </div>
   )
