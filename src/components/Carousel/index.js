@@ -1,6 +1,5 @@
 "use client"
 
-import next from "next";
 import { useState } from "react";
 import {
   BsFillArrowRightCircleFill,
