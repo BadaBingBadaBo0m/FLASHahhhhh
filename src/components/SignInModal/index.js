@@ -9,7 +9,7 @@ import SignupForm from '../SignupModal';
 const SignInForm = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const { setModalContent } = useModal()
+  const { setModalContent, closeModal } = useModal()
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -19,13 +19,14 @@ const SignInForm = () => {
         // Signed in 
         const user = userCredential.user;
         console.log('user signed in', user)
-        router.push('/')
-        // ...
+        closeModal();
+        return user;
       })
       .catch((error) => {
         const errorCode = error.code;
         const errorMessage = error.message;
-        console.log('errors', errorMessage)
+        console.log('errors', errorMessage);
+        return { errorCode, errorMessage }
       });
 
     console.log("bruh");
@@ -56,7 +57,7 @@ const SignInForm = () => {
           className='w-64 h-11 p-2 rounded-sm outline-none bg-nav-background border border-gray-400'
         />
 
-        <button className='bg-blue-500 w-36 h-11 rounded-full font-bold text-lg' type="submit" onClick={handleSubmit}>Sign up</button>
+        <button className='bg-blue-500 w-36 h-11 rounded-full font-bold text-lg' type="submit" onClick={handleSubmit}>Sign In</button>
         <div>Already have an account? <a className='cursor-pointer text-blue-500' onClick={() => setModalContent(<SignupForm />)}>Login</a>!</div>
       </form>
     </div>
