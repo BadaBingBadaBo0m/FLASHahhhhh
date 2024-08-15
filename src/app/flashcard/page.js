@@ -37,7 +37,7 @@ const FlashCardTest = () =>{
     const currentSetSnap = await getDoc(currentSet);
 
     await setDoc(currentSet, {
-      Cards: [card]
+      Cards: [...currentSetSnap.data().Cards, card]
     })
     }
 
