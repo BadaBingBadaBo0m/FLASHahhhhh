@@ -22,7 +22,6 @@ const NavBar = () => {
   return (
     <div className='flex justify-between p-5 bg-Navbar h-20'>
       <h1 className='flex items-center' onClick={() => router.push("/")}>FLASH - <span className='text-xs ml-1'>ahhhhh</span></h1>
-      <button onClick={() => console.log(currentUser)}>Print user</button>
 
       <div id='nav-button-container'>
         {currentUser ?
