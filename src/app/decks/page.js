@@ -6,9 +6,12 @@ import { db } from "../firebase";
 import { BsPlusCircleFill } from 'react-icons/bs';
 import { auth } from '../firebase';
 import { useRouter } from 'next/navigation';
+import { useModal } from '@/context/Modal';
+import CreateDeckForm from '@/components/CreateDeck';
 
 const FlashCardHome = () => {
   const [decks, setDecks] = useState([]);
+  const { setModalContent } = useModal();
   const router = useRouter();
   const currentUser = auth.currentUser;
 
@@ -35,7 +38,7 @@ const FlashCardHome = () => {
 
         <div>
           <div id='create-deck' className='flex items-center'>
-            <button className='mr-4'>
+            <button className='mr-4' onClick={() => setModalContent(<CreateDeckForm />)}>
               <BsPlusCircleFill size={35} color='#3f83ec' />
             </button>
 
@@ -43,7 +46,7 @@ const FlashCardHome = () => {
           </div>
 
           {decks.map(deck => (
-            <div className='flex gap-5'>
+            <div key={`DeckList ${deck.Name} ${deck.id}`} className='flex gap-5'>
               <h1>{deck.Name}</h1>
               <button onClick={() => console.log(deck)}>Print</button>
             </div>
