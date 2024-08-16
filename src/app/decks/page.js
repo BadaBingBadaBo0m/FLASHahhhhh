@@ -1,6 +1,7 @@
 "use client"
 
 import React, { useEffect, useState } from 'react'
+import Link from 'next/link';
 import { collection, addDoc, query, onSnapshot, orderBy, doc, setDoc, updateDoc, getDoc } from "firebase/firestore";
 import { db } from "../firebase";
 import { BsPlusCircleFill } from 'react-icons/bs';
@@ -48,6 +49,9 @@ const FlashCardHome = () => {
           {decks.map(deck => (
             <div key={`DeckList ${deck.Name} ${deck.id}`} className='flex gap-5'>
               <h1>{deck.Name}</h1>
+              <Link href={`/decks/edit/${deck.id}`}>
+                <button>Edit Deck</button>
+              </Link>
               <button onClick={() => console.log(deck)}>Print</button>
             </div>
           ))}
