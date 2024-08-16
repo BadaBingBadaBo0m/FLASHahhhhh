@@ -9,9 +9,18 @@ import { useModal } from '@/context/Modal';
 
 export default function DeckPage() {
   const pathname = usePathname().split('/');
-  const deckId = pathname[pathname.length - 1]
+  const deckId = pathname[pathname.length - 1];
+  const currentSet = doc(db, "Decks", deckId)
 
-  console.log(deckId);  
+  const getOneDoc = async () => {
+    const currentSetSnap = await getDoc(currentSet);
+    console.log(currentSetSnap.data())
+  }
+
+  useEffect(() => {
+    getOneDoc();
+  }, []);
+  
 
   return (
     <div className="flex h-full flex-col items-center justify-between p-24 ">
