@@ -12,6 +12,9 @@ export default function DeckPage() {
   const deckId = pathname[pathname.length - 1];
   const currentSet = doc(db, "Decks", deckId);
   const [currentDeck, setCurrentDeck] = useState({});
+  const [newDeckName, setNewDeckName] = useState(currentDeck.Name);
+  const [newDeckDescription, setNewDeckDescription] = useState(currentDeck.Description);
+  const [disableInput, setDisableInput] = useState(true);
 
   const getOneDoc = async () => {
     const currentSetSnap = await getDoc(currentSet);
@@ -26,7 +29,7 @@ export default function DeckPage() {
 
   const addCard = async (e) => {
     e.preventDefault();
-    if (!newCard.question || !newCard.answer) return;
+    if (!newCard.question || !newCard.answer) return ;
   
     const card = {
       question: newCard.question.trim(),
@@ -40,13 +43,28 @@ export default function DeckPage() {
 
     setNewCard({ question: "", answer: "" });
   }
+
+  const editDeck = async (e) => {
+    e.preventDefault();
+    if (!newDeckDescription || !newDeckName) return setDisableInput(true);
+  }
   
 
-  console.log(currentDeck);
+  console.log(currentDeck.Name);
   return (
     <>
         <div className="flex justify-center my-5">
-            <h1 className="text-5xl ">{currentDeck.Name}</h1>
+            {disableInput ? (
+                <>
+                    <h1 className="text-5xl">{currentDeck.Name}</h1>
+                </>
+            ) : (
+                <input
+                    className="text-5xl text-black w-fit"
+                    value={newDeckName}
+                    onChange={(e) => setNewDeckName(e.target.value)}
+                />
+            )}
         </div>
         
         <form className="grid grid-cols-5 grid-rows-1 gap-4 p-5 m-0">
