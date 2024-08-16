@@ -36,13 +36,11 @@ const FlashCardHome = () => {
       </div>
 
       <div>
-
         <div>
           <div id='create-deck' className='flex items-center'>
             <button className='mr-4' onClick={() => setModalContent(<CreateDeckForm />)}>
               <BsPlusCircleFill size={35} color='#3f83ec' />
             </button>
-
             <div>Create new deck</div>
           </div>
 
@@ -55,6 +53,7 @@ const FlashCardHome = () => {
               <button onClick={() => console.log(deck)}>Print</button>
             </div>
           ))}
+          
         </div>
       </div>
     </div>
