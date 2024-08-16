@@ -3,7 +3,7 @@ import Image from "next/image";
 import React, { useState, useEffect } from "react";
 import { collection, addDoc, query, onSnapshot, orderBy, doc, setDoc, updateDoc, getDoc } from "firebase/firestore";
 import { db, auth } from "../../../firebase";
-import { BsPlusCircleFill } from 'react-icons/bs';
+import { FaPen } from "react-icons/fa";
 import { usePathname } from 'next/navigation'
 import { useModal } from '@/context/Modal';
 
@@ -53,19 +53,24 @@ export default function DeckPage() {
   console.log(currentDeck.Name);
   return (
     <>
-        <div className="flex justify-center my-5">
-            {disableInput ? (
-                <>
-                    <h1 className="text-5xl">{currentDeck.Name}</h1>
-                </>
-            ) : (
-                <input
-                    className="text-5xl text-black w-fit"
-                    value={newDeckName}
-                    onChange={(e) => setNewDeckName(e.target.value)}
-                />
-            )}
+        <div className="flex justify-center">
+            <div className="flex justify-around items-center my-5 w-[15%] mx-0 ">
+                {disableInput ? (
+                    <>
+                        <h1 className="text-5xl">{currentDeck.Name}</h1>
+                        <FaPen title="Edit Deck" className="cursor-pointer" />
+                        
+                    </>
+                ) : (
+                    <input
+                        className="text-5xl text-black w-fit"
+                        value={newDeckName}
+                        onChange={(e) => setNewDeckName(e.target.value)}
+                    />
+                )}
+            </div>
         </div>
+
         
         <form className="grid grid-cols-5 grid-rows-1 gap-4 p-5 m-0">
         <input 
