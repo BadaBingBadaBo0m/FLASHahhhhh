@@ -95,27 +95,7 @@ export default function DeckPage() {
             </div>
         </div>
 
-        
-        <form className="grid grid-cols-5 grid-rows-1 gap-4 p-5 m-0">
-        <input 
-          className="col-span-2 h-10 font-bold rounded-lg p-3 text-black text-lg" 
-          placeholder="Question"
-          value={newCard.question}
-          onChange={(e) => setNewCard({ ...newCard, question: e.target.value })}
-        />
-        <input 
-          className="col-span-2 col-start-3 font-bold rounded-lg text-black h-10 p-3 text-lg"
-          placeholder="Answer" 
-          value={newCard.answer}
-          onChange={(e) => setNewCard({ ...newCard, answer: e.target.value })}
-        />
-        <button 
-          onClick={addCard}
-          className="col-start-5 bg-slate-950 rounded-lg  h-11 text-2xl p-1">
-            +
-        </button>
-      </form>
-        {currentDeck.Cards ? (
+        {currentDeck.Cards.length > 1 ? (
             <>
                 {currentDeck.Cards.map((card,index) => (
                     <li key={index} className="pb-2 px-5 text-lg">
@@ -136,6 +116,27 @@ export default function DeckPage() {
                 <button>Add Card</button>
             </>
         )}
+
+
+        <form className="grid grid-cols-5 grid-rows-1 gap-4 p-5 m-0">
+            <input 
+            className="col-span-2 h-10 font-bold rounded-lg p-3 text-black text-lg" 
+            placeholder="Question"
+            value={newCard.question}
+            onChange={(e) => setNewCard({ ...newCard, question: e.target.value })}
+        />
+        <input 
+            className="col-span-2 col-start-3 font-bold rounded-lg text-black h-10 p-3 text-lg"
+            placeholder="Answer" 
+            value={newCard.answer}
+            onChange={(e) => setNewCard({ ...newCard, answer: e.target.value })}
+        />
+        <button 
+            onClick={addCard}
+            className="col-start-5 bg-slate-950 rounded-lg  h-11 text-2xl p-1">
+            +
+        </button>
+      </form>
     </>
 
   );
