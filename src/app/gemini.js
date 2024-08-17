@@ -16,10 +16,11 @@ const generationConfig = {
   topP: 0.95,
   topK: 64,
   maxOutputTokens: 8192,
-  responseMimeType: "text/plain",
+  responseMimeType: "application/json",
 };
 
-export async function runGemini(prompt) {
+export async function runGemini(subject, count) {
+  const prompt = `You are generating Flash cards for studying ${subject}. Please generate me a set of ${count} flash cards about ${subject}. Format the JSON as such: {"Cards": [{"question": "", "answer": ""}]}`
   const chatSession = model.startChat({
     generationConfig,
     // safetySettings: Adjust safety settings
@@ -29,8 +30,5 @@ export async function runGemini(prompt) {
   });
 
   const result = await chatSession.sendMessage(prompt);
-  console.log(result.response.text());
+  return JSON.parse(result.response.text())
 }
-
-// runGemini("Hello")
-console.log(apiKey)
