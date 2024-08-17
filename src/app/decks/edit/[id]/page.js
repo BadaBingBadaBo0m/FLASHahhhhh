@@ -50,6 +50,8 @@ export default function DeckPage() {
   const editDeck = async (e) => {
     e.preventDefault();
     if (!newDeckDescription || !newDeckName) return setDisableInput(true);
+    setDisableInput(true)
+    console.log("You made an edit on the deck name!");
   }
 
   const disableInputFunction = (e) => {
@@ -66,19 +68,21 @@ export default function DeckPage() {
             <div className="flex justify-center items-center my-5  mx-0 ">
                 {disableInput ? (
                     <>
-                        <h1 className="text-5xl">{currentDeck.Name}</h1>
+                        <h1 className="text-5xl mx-5">{currentDeck.Name}</h1>
                         <FaPen onClick={disableInputFunction} title="Edit Deck" className="cursor-pointer" />
                         
                     </>
                 ) : (
                     <>
-                        <input
-                        className=" text-black text-5xl w-2/4"
-                        value={newDeckName}
-                        disabled={disableInput}
-                        onChange={(e) => setNewDeckName(e.target.value)}
-                        />
-                        <FaPen onClick={() => setDisableInput(true)} title="Edit Deck" className="cursor-pointer" />
+                        <form className="flex items-center justify-around" onSubmit={editDeck}>
+                            <input
+                            className=" text-black text-5xl w-[90%]"
+                            value={newDeckName}
+                            disabled={disableInput}
+                            onChange={(e) => setNewDeckName(e.target.value)}
+                            />
+                            <FaPen onClick={editDeck} title="Edit Deck" className="cursor-pointer" />
+                        </form>
                     </>
                 )}
             </div>
