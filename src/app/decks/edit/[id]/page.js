@@ -58,15 +58,19 @@ export default function DeckPage() {
                 {disableInput ? (
                     <>
                         <h1 className="text-5xl">{currentDeck.Name}</h1>
-                        <FaPen title="Edit Deck" className="cursor-pointer" />
+                        <FaPen onClick={() => setDisableInput(false)} title="Edit Deck" className="cursor-pointer" />
                         
                     </>
                 ) : (
-                    <input
-                        className="text-5xl text-black w-fit"
-                        value={newDeckName}
+                    <>
+                        <input
+                        className="text-5xl text-black w-min"
+                        value={currentDeck.Name}
+                        disabled={disableInput}
                         onChange={(e) => setNewDeckName(e.target.value)}
-                    />
+                        />
+                        <FaPen onClick={() => setDisableInput(true)} title="Edit Deck" className="cursor-pointer" />
+                    </>
                 )}
             </div>
         </div>
