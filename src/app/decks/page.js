@@ -9,6 +9,7 @@ import { auth } from '../firebase';
 import { useRouter } from 'next/navigation';
 import { useModal } from '@/context/Modal';
 import CreateDeckForm from '@/components/CreateDeck';
+import DeleteDeckForm from '@/components/DeleteDeck';
 
 const FlashCardHome = () => {
   const [decks, setDecks] = useState([]);
@@ -50,6 +51,7 @@ const FlashCardHome = () => {
               <Link href={`/decks/edit/${deck.id}`}>
                 <button>Edit Deck</button>
               </Link>
+              <button onClick={() => setModalContent(<DeleteDeckForm deckId={deck.id} />)}>Delete Deck</button>
               <button onClick={() => console.log(deck)}>Print</button>
             </div>
           ))}
