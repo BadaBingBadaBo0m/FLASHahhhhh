@@ -53,7 +53,7 @@ const FlashCardHome = () => {
               <button onClick={() => console.log(deck)}>Print</button>
             </div>
           ))}
-          
+
         </div>
       </div>
     </div>
