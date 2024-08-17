@@ -6,6 +6,7 @@ import { db, auth } from "../../../firebase";
 import { FaPen } from "react-icons/fa";
 import { usePathname } from 'next/navigation'
 import { useModal } from '@/context/Modal';
+import CardComponent from "@/components/CardComponent";
 
 export default function DeckPage() {
   const pathname = usePathname().split('/');
@@ -98,15 +99,9 @@ export default function DeckPage() {
             <>
                 <ul className="flex-col w-2/4 justify-items-center justify-center items-center  text-center m-auto">
                     {currentDeck.Cards.map((card,index) => (
-                    
-                        <li key={index} className=" text-lg grid grid-cols-6 grid-rows-1 gap-4 w-full p-3 my-5 ">
-                            <div className="col-span-2 border p-2 ">{card.question}</div>
-                            <div className="col-span-2 col-start-3 border p-2">{card.answer}</div>
-                            <button className="col-start-5 border rounded-full p-2">Edit</button>
-                            <button className="col-start-6 border rounded-full p-2">Delete</button>
+                        <li key={index}>
+                            <CardComponent card={card}/>
                         </li>
-                    
-
                     ))}
                 </ul>
             </>
@@ -137,6 +132,5 @@ export default function DeckPage() {
         </button>
       </form>
     </>
-
   );
 }
