@@ -12,17 +12,20 @@ export default function DeckPage() {
   const deckId = pathname[pathname.length - 1];
   const currentSet = doc(db, "Decks", deckId);
   const [currentDeck, setCurrentDeck] = useState({});
-  const [newDeckName, setNewDeckName] = useState(currentDeck.Name);
+  const [newDeckName, setNewDeckName] = useState("");
   const [newDeckDescription, setNewDeckDescription] = useState(currentDeck.Description);
   const [disableInput, setDisableInput] = useState(true);
 
   const getOneDoc = async () => {
     const currentSetSnap = await getDoc(currentSet);
     setCurrentDeck(currentSetSnap.data());
+    setNewDeckName(currentDeck.Name);
+    setNewDeckDescription(currentSetSnap.data().Description);
   }
 
   useEffect(() => {
     getOneDoc();
+    setNewDeckName(currentDeck.Name)
   }, []);
 
   const [newCard, setNewCard] = useState({ question: "", answer: "" });
@@ -48,24 +51,30 @@ export default function DeckPage() {
     e.preventDefault();
     if (!newDeckDescription || !newDeckName) return setDisableInput(true);
   }
-  
 
-  console.log(currentDeck.Name);
+  const disableInputFunction = (e) => {
+    e.preventDefault()
+    setDisableInput(false);
+    setNewDeckName(currentDeck.Name)
+  }
+
+
+  
   return (
     <>
         <div className="flex justify-center">
-            <div className="flex justify-around items-center my-5 w-[15%] mx-0 ">
+            <div className="flex justify-center items-center my-5  mx-0 ">
                 {disableInput ? (
                     <>
                         <h1 className="text-5xl">{currentDeck.Name}</h1>
-                        <FaPen onClick={() => setDisableInput(false)} title="Edit Deck" className="cursor-pointer" />
+                        <FaPen onClick={disableInputFunction} title="Edit Deck" className="cursor-pointer" />
                         
                     </>
                 ) : (
                     <>
                         <input
-                        className="text-5xl text-black w-min"
-                        value={currentDeck.Name}
+                        className=" text-black text-5xl w-2/4"
+                        value={newDeckName}
                         disabled={disableInput}
                         onChange={(e) => setNewDeckName(e.target.value)}
                         />
