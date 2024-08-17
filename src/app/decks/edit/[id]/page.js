@@ -41,7 +41,7 @@ export default function DeckPage() {
   useEffect(() => {
     getOneDoc();
     setNewDeckName(currentDeck.Name)
-  }, []);
+  }, [currentDeck.Cards]);
 
   const [newCard, setNewCard] = useState({ question: "", answer: "" });
 
@@ -100,7 +100,7 @@ export default function DeckPage() {
                 <ul className="flex-col w-2/4 justify-items-center justify-center items-center  text-center m-auto">
                     {currentDeck.Cards.map((card,index) => (
                         <li key={index}>
-                            <CardComponent card={card}/>
+                            <CardComponent card={card} index={index} currentSet={currentSet} currentDeck={currentDeck}/>
                         </li>
                     ))}
                 </ul>
