@@ -37,7 +37,6 @@ const Carousel = ({ slides }) => {
         else setCurrent(current - 1);
       }, 500);
     }
-
   };
 
   let nextSlide = (e) => {
@@ -58,9 +57,7 @@ const Carousel = ({ slides }) => {
   let flipSlide = (e) => {
     e.preventDefault()
     setFlipCard(!flipCard)
-    console.log(width)
   }
-
 
   return (
     <div className="overflow-hidden relative h-full">

@@ -59,6 +59,7 @@ export default function DeckPage() {
     })
 
     setNewCard({ question: "", answer: "" });
+    getOneDoc();
   }
 
   const disableInputFunction = (e) => {
@@ -67,8 +68,6 @@ export default function DeckPage() {
     setNewDeckName(currentDeck.Name)
   }
 
-
-  console.log(currentDeck)
   return (
     <>
         <div className="flex justify-center">
@@ -95,19 +94,18 @@ export default function DeckPage() {
             </div>
         </div>
 
-        {currentDeck.Cards === 0 ? (
+        {currentDeck?.Cards?.length > 0 ? (
             <>
                 {currentDeck.Cards.map((card,index) => (
-                    <li key={index} className="pb-2 px-5 text-lg">
-                        <input 
-                        className="col-span-3 bg-white font-bold rounded-lg text-black" 
-                        value={card.question} 
-                        />
-                        <input 
-                        className="col-start-4 bg-white font-bold rounded-lg text-black" 
-                        value={card.answer}
-                        />
-                    </li>
+                    <ul className="flex justify-center">
+                        <li key={index} className="pb-2 px-5 text-lg grid grid-cols-6 grid-rows-1 gap-4 w-[50%] left-[20%]">
+                            <div className="col-span-2">{card.question}</div>
+                            <div className="col-span-2 col-start-3">{card.answer}</div>
+                            <button className="col-start-5">Edit</button>
+                            <button className="col-start-6">Delete</button>
+                        </li>
+                    </ul>
+
                 ))}
             </>
         ) : (
@@ -116,7 +114,6 @@ export default function DeckPage() {
                 <button>Add Card</button>
             </>
         )}
-
 
         <form className="grid grid-cols-5 grid-rows-1 gap-4 p-5 m-0">
             <input 
