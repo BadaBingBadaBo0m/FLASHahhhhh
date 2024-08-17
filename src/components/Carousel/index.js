@@ -32,7 +32,7 @@ const Carousel = ({ slides }) => {
       if (current === 0) setCurrent(slides.length - 1);
       else setCurrent(current - 1);
     } else {
-      setTimeout (() => {
+      setTimeout(() => {
         if (current === 0) setCurrent(slides.length - 1);
         else setCurrent(current - 1);
       }, 500);
@@ -87,7 +87,7 @@ const Carousel = ({ slides }) => {
               }}
             >
               <h1
-                className="p-5 w-full h-full flex items-center justify-center backface-hidden absolute inset-0 text-center bg-black rounded-xl z-10"
+                className="text-black p-5 w-full h-full flex items-center justify-center backface-hidden absolute inset-0 text-center bg-Navbar rounded-xl z-10 text-2xl"
                 style={{
                   backfaceVisibility: 'hidden',
                   transform: 'rotateY(0deg)',
@@ -99,7 +99,7 @@ const Carousel = ({ slides }) => {
                 {s.question}
               </h1>
               <h1
-                className="p-5 w-full h-full flex items-center justify-center backface-hidden absolute inset-0 text-center bg-black rounded-xl z-10"
+                className="text-black p-5 w-full h-full flex items-center justify-center backface-hidden absolute inset-0 text-center bg-Navbar rounded-xl z-10 text-2xl"
                 style={{
                   backfaceVisibility: 'hidden',
                   transform: 'rotateY(180deg)',
@@ -117,10 +117,10 @@ const Carousel = ({ slides }) => {
 
       <div id="arrow-div" className="absolute top-0 h-full w-full justify-between items-center flex text-white px-10 text-3xl">
         <button onClick={previousSlide}>
-          <BsFillArrowLeftCircleFill />
+          <BsFillArrowLeftCircleFill color="#611f69" />
         </button>
         <button onClick={nextSlide}>
-          <BsFillArrowRightCircleFill />
+          <BsFillArrowRightCircleFill color="#611f69" />
         </button>
       </div>
 
@@ -143,7 +143,7 @@ const Carousel = ({ slides }) => {
                 setCurrent(i);
               }}
               key={"circle" + i}
-              className={`rounded-full w-5 h-5 cursor-pointer  ${i == current ? "bg-white" : "bg-gray-500"
+              className={`rounded-full w-5 h-5 cursor-pointer  ${i == current ? "bg-purple" : "bg-gray-500"
                 }`}
             ></div>
           );
