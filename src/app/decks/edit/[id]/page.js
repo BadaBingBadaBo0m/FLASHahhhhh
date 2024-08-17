@@ -117,7 +117,7 @@ export default function DeckPage() {
             </>
         )}
 
-        <form className="grid grid-cols-5 grid-rows-1 gap-4 p-5 m-0">
+        <form className="grid grid-cols-5 grid-rows-1 gap-4 p-5 mx-[20%] w-[60%] my-auto">
             <input 
             className="col-span-2 h-10 font-bold rounded-lg p-3 text-black text-lg" 
             placeholder="Question"
