@@ -6,6 +6,7 @@ import { db, auth } from "../../../firebase";
 import { FaPen } from "react-icons/fa";
 import { usePathname } from 'next/navigation'
 import { useModal } from '@/context/Modal';
+import CardComponent from "@/components/CardComponent";
 
 export default function DeckPage() {
   const pathname = usePathname().split('/');
@@ -59,6 +60,7 @@ export default function DeckPage() {
     })
 
     setNewCard({ question: "", answer: "" });
+    getOneDoc();
   }
 
   const disableInputFunction = (e) => {
@@ -67,8 +69,6 @@ export default function DeckPage() {
     setNewDeckName(currentDeck.Name)
   }
 
-
-  console.log(currentDeck)
   return (
     <>
         <div className="flex justify-center">
@@ -95,20 +95,15 @@ export default function DeckPage() {
             </div>
         </div>
 
-        {currentDeck.Cards === 0 ? (
+        {currentDeck?.Cards?.length > 0 ? (
             <>
-                {currentDeck.Cards.map((card,index) => (
-                    <li key={index} className="pb-2 px-5 text-lg">
-                        <input 
-                        className="col-span-3 bg-white font-bold rounded-lg text-black" 
-                        value={card.question} 
-                        />
-                        <input 
-                        className="col-start-4 bg-white font-bold rounded-lg text-black" 
-                        value={card.answer}
-                        />
-                    </li>
-                ))}
+                <ul className="flex-col w-2/4 justify-items-center justify-center items-center  text-center m-auto">
+                    {currentDeck.Cards.map((card,index) => (
+                        <li key={index}>
+                            <CardComponent card={card}/>
+                        </li>
+                    ))}
+                </ul>
             </>
         ) : (
             <>
@@ -117,8 +112,7 @@ export default function DeckPage() {
             </>
         )}
 
-
-        <form className="grid grid-cols-5 grid-rows-1 gap-4 p-5 m-0">
+        <form className="grid grid-cols-5 grid-rows-1 gap-4 p-5 mx-[20%] w-[60%] my-auto">
             <input 
             className="col-span-2 h-10 font-bold rounded-lg p-3 text-black text-lg" 
             placeholder="Question"
@@ -138,6 +132,5 @@ export default function DeckPage() {
         </button>
       </form>
     </>
-
   );
 }
