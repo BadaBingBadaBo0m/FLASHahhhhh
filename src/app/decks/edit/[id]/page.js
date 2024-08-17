@@ -96,17 +96,19 @@ export default function DeckPage() {
 
         {currentDeck?.Cards?.length > 0 ? (
             <>
-                {currentDeck.Cards.map((card,index) => (
-                    <ul className="flex justify-center">
-                        <li key={index} className="pb-2 px-5 text-lg grid grid-cols-6 grid-rows-1 gap-4 w-[50%] left-[20%]">
-                            <div className="col-span-2">{card.question}</div>
-                            <div className="col-span-2 col-start-3">{card.answer}</div>
-                            <button className="col-start-5">Edit</button>
-                            <button className="col-start-6">Delete</button>
+                <ul className="flex-col w-2/4 justify-items-center justify-center items-center  text-center m-auto">
+                    {currentDeck.Cards.map((card,index) => (
+                    
+                        <li key={index} className=" text-lg grid grid-cols-6 grid-rows-1 gap-4 w-full p-3 my-5 ">
+                            <div className="col-span-2 border p-2 ">{card.question}</div>
+                            <div className="col-span-2 col-start-3 border p-2">{card.answer}</div>
+                            <button className="col-start-5 border rounded-full p-2">Edit</button>
+                            <button className="col-start-6 border rounded-full p-2">Delete</button>
                         </li>
-                    </ul>
+                    
 
-                ))}
+                    ))}
+                </ul>
             </>
         ) : (
             <>
