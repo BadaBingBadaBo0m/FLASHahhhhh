@@ -13,7 +13,7 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-      <body className={`${inter.className} min-h-screen bg-background overflow-y-hidden`}>
+      <body className={`${inter.className} min-h-screen bg-background`}>
         <ModalProvider >
           <NavBar />
           {children}

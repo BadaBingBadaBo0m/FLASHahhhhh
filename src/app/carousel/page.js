@@ -2,10 +2,10 @@ import Carousel from "@/components/Carousel";
 
 const CarouselTest = () => {
   let slides = [
-    { prompt: "Hi how are ya", answer: "Good how about you" },
-    { prompt: "You are a weird feller", answer: "That's what she said" },
-    { prompt: "What's the best gum ever?", answer: "Charleston chew" },
-    { prompt: "Bruh you suck", answer: "I know" },
+    { question: "Hi how are ya", answer: "Good how about you" },
+    { question: "You are a weird feller", answer: "That's what she said" },
+    { question: "What's the best gum ever?", answer: "Charleston chew" },
+    { question: "Bruh you suck", answer: "I know" },
   ];
 
   return (
