@@ -27,19 +27,32 @@ const Carousel = ({ slides }) => {
   let previousSlide = (e) => {
     e.preventDefault()
     setFlipCard(0);
-    setTimeout(() => {
+
+    if (!flipCard) {
       if (current === 0) setCurrent(slides.length - 1);
       else setCurrent(current - 1);
-    }, 500);
+    } else {
+      setTimeout (() => {
+        if (current === 0) setCurrent(slides.length - 1);
+        else setCurrent(current - 1);
+      }, 500);
+    }
+
   };
 
   let nextSlide = (e) => {
     e.preventDefault()
     setFlipCard(0);
-    setTimeout(() => {
+
+    if (!flipCard) {
       if (current === slides.length - 1) setCurrent(0);
       else setCurrent(current + 1);
-    }, 500);
+    } else {
+      setTimeout(() => {
+        if (current === slides.length - 1) setCurrent(0);
+        else setCurrent(current + 1);
+      }, 500);
+    }
   };
 
   let flipSlide = (e) => {
