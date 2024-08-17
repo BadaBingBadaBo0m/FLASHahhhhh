@@ -17,7 +17,8 @@ const CreateDeckForm = () => {
 
     await addDoc(collection(db, "Decks"), {
       Name: name,
-      Description: description
+      Description: description,
+      Cards: []
     });
 
     setName("");

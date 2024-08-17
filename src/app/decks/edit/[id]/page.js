@@ -23,6 +23,20 @@ export default function DeckPage() {
     setNewDeckDescription(currentSetSnap.data().Description);
   }
 
+  const editDeck = async (e) => {
+    e.preventDefault();
+    if (!newDeckName) return setDisableInput(true);
+    
+    await updateDoc(currentSet, {
+        Name: newDeckName
+    })
+
+    setDisableInput(true)
+    
+    getOneDoc();
+  }
+
+
   useEffect(() => {
     getOneDoc();
     setNewDeckName(currentDeck.Name)
@@ -47,13 +61,6 @@ export default function DeckPage() {
     setNewCard({ question: "", answer: "" });
   }
 
-  const editDeck = async (e) => {
-    e.preventDefault();
-    if (!newDeckDescription || !newDeckName) return setDisableInput(true);
-    setDisableInput(true)
-    console.log("You made an edit on the deck name!");
-  }
-
   const disableInputFunction = (e) => {
     e.preventDefault()
     setDisableInput(false);
@@ -61,7 +68,7 @@ export default function DeckPage() {
   }
 
 
-  
+  console.log(currentDeck.Name)
   return (
     <>
         <div className="flex justify-center">
