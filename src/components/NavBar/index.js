@@ -20,7 +20,7 @@ const NavBar = () => {
   }
 
   return (
-    <div className='flex justify-between p-5 bg-Navbar h-20 sticky top-0 z-999'>
+    <div className='flex justify-between p-5 bg-Navbar h-20 sticky top-0 z-50'>
       <h1 className='flex items-center' onClick={() => router.push("/")}>FLASH - <span className='text-xs ml-1'>ahhhhh</span></h1>
 
       <div id='nav-button-container'>

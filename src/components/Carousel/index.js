@@ -50,7 +50,7 @@ const Carousel = ({ slides }) => {
 
 
   return (
-    <div className="overflow-hidden relative h-3/5">
+    <div className="overflow-hidden relative h-full">
       <div
         className="flex shrink-0 transition ease-out duration-1000 h-full perspective-1000"
         style={{
@@ -74,19 +74,25 @@ const Carousel = ({ slides }) => {
               }}
             >
               <h1
-                className="w-full h-full flex items-center justify-center backface-hidden absolute inset-0"
+                className="p-5 w-full h-full flex items-center justify-center backface-hidden absolute inset-0 text-center bg-black rounded-xl z-10"
                 style={{
                   backfaceVisibility: 'hidden',
                   transform: 'rotateY(0deg)',
+                  width: width,
+                  height: height,
+                  left: 90
                 }}
               >
                 {s.question}
               </h1>
               <h1
-                className="w-full h-full flex items-center justify-center backface-hidden absolute inset-0"
+                className="p-5 w-full h-full flex items-center justify-center backface-hidden absolute inset-0 text-center bg-black rounded-xl z-10"
                 style={{
                   backfaceVisibility: 'hidden',
                   transform: 'rotateY(180deg)',
+                  width: width,
+                  height: height,
+                  left: 90
                 }}
               >
                 {s.answer}
@@ -106,7 +112,7 @@ const Carousel = ({ slides }) => {
       </div>
 
       <div
-        className={`absolute h-full top-0 border `}
+        className={`absolute h-full top-0`}
         onClick={flipSlide}
         style={{
           width: width,
@@ -116,7 +122,7 @@ const Carousel = ({ slides }) => {
       >
       </div>
 
-      <div className="absolute bottom-0 py-4 flex justify-center gap-3 w-full">
+      <div className="absolute bottom-0 flex justify-center gap-3 w-full">
         {slides.map((s, i) => {
           return (
             <div
