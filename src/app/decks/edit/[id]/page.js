@@ -68,7 +68,7 @@ export default function DeckPage() {
   }
 
 
-  console.log(currentDeck.Name)
+  console.log(currentDeck)
   return (
     <>
         <div className="flex justify-center">
@@ -95,7 +95,7 @@ export default function DeckPage() {
             </div>
         </div>
 
-        {currentDeck.Cards.length > 1 ? (
+        {currentDeck.Cards === 0 ? (
             <>
                 {currentDeck.Cards.map((card,index) => (
                     <li key={index} className="pb-2 px-5 text-lg">
