@@ -41,7 +41,7 @@ export default function DeckPage() {
   useEffect(() => {
     getOneDoc();
     setNewDeckName(currentDeck.Name)
-  }, [currentDeck.Cards]);
+  }, []);
 
   const [newCard, setNewCard] = useState({ question: "", answer: "" });
 

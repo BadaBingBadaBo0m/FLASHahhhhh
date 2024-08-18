@@ -2,8 +2,11 @@
 import React, { useState, useEffect } from "react";
 import { collection, addDoc, query, onSnapshot, orderBy, doc, setDoc, updateDoc, getDoc, deleteField} from "firebase/firestore";
 import { db } from "../../app/firebase";
+import { Router } from "next/router";
+import { useRouter } from 'next/navigation';
 
 const CardComponent= ({card, index, currentSet, currentDeck}) =>{
+    const router = useRouter();
     const cards = currentDeck.Cards;
     const [updatedCards, setUpdatedCards] = useState(cards);
     const [editCard, setEditCard] = useState(false);
@@ -15,6 +18,7 @@ const CardComponent= ({card, index, currentSet, currentDeck}) =>{
            Cards: updatedCards
         });
         setUpdatedCards(cards);
+        router.refresh();
     }
 
     return (
