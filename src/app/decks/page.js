@@ -4,7 +4,6 @@ import React, { useEffect, useState } from 'react'
 import Link from 'next/link';
 import { collection, addDoc, query, onSnapshot, orderBy, doc, setDoc, updateDoc, getDoc } from "firebase/firestore";
 import { db } from "../firebase";
-import { BsPlusCircleFill } from 'react-icons/bs';
 import { auth } from '../firebase';
 import { useRouter } from 'next/navigation';
 import { useModal } from '@/context/Modal';
@@ -38,7 +37,7 @@ const FlashCardHome = () => {
 
       <div className='flex flex-col gap-7 items-center text-black mt-5'>
         <div id='create-deck' className='flex items-center'>
-          <button className='bg-purple text-white font-bold text-1xl p-4 rounded-xl'>Create new deck</button>
+          <button onClick={() => setModalContent(<CreateDeckForm />)} className='bg-purple text-white font-bold text-1xl p-4 rounded-xl'>Create new deck</button>
         </div>
 
         {decks.map(deck => (
@@ -50,8 +49,9 @@ const FlashCardHome = () => {
               <Link href={'/carousel'}>
                 <button className='bg-purple text-white w-20 h-12 rounded-xl'>Study</button>
               </Link>
-            </div>
 
+              <p>{deck.Description}</p>
+            </div>
 
 
             <div className='flex gap-1 text-white'>
