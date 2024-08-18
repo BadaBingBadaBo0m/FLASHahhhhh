@@ -23,24 +23,20 @@ const CardComponent= ({card, index, currentSet, currentDeck}) =>{
         router.refresh();
     }
 
+    console.log(editCard)
+
     return (
         <div className="text-lg grid grid-cols-6 grid-rows-1 gap-4 w-full p-3 my-5 text-black border-black border-2">
             {editCard ? (
                 <>
-                    <form>
                         <input
                             className=" col-span-2 p-2"
                             value={newQuestion}
-                            disabled={editCard}
                             onChange={(e) => setNewQuestion(e.target.value)} />
-                        <input />
                         <input
                             className=" col-span-2 col-start-3 border-black p-2 text-black"
                             value={newAnswer}
-                            disabled={editCard}
                             onChange={(e) => setNewAnswer(e.target.value)} />
-                        <input />
-                    </form>
                     <button onClick={() => setEditCard(false)} className="col-start-5 border rounded-full bg-purple text-white p-2">Edit</button>
                 </>
             ) : (
