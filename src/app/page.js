@@ -21,10 +21,10 @@ export default function Home() {
   }, [])
 
   return (
-    <div className="flex h-full flex-col items-center justify-between">
+    <div className="flex h-full flex-col items-center justify-between ">
       <div id="content-container" className="w-full min-h-screen flex flex-col items-center">
 
-        <div className='bg-Navbar w-full flex flex-col items-center gap-8 pt-12 text-center'>
+        <div className='bg-Navbar w-full flex flex-col items-center gap-8 top-[0%] pt-12 text-center absolute pt-20'>
           <h1 className='text-black font-bold text-6xl'>Studying made <span className='text-purple'>easy</span></h1>
 
           <button className='bg-purple p-7 rounded-lg w-56' onClick={() => setModalContent(<SignupForm />)}>GET STARTED</button>
