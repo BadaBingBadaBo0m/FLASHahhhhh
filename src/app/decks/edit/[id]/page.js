@@ -75,8 +75,8 @@ export default function DeckPage() {
             <div className="flex justify-center items-center my-5  mx-0 ">
                 {disableInput ? (
                     <>
-                        <h1 className="text-5xl mx-5">{currentDeck.Name}</h1>
-                        <FaPen onClick={disableInputFunction} title="Edit Deck" className="cursor-pointer" />
+                        <h1 className="text-5xl mx-5 text-purple">{currentDeck.Name}</h1>
+                        <FaPen onClick={disableInputFunction} title="Edit Deck" className="cursor-pointer text-purple" />
                         
                     </>
                 ) : (
@@ -88,7 +88,7 @@ export default function DeckPage() {
                             disabled={disableInput}
                             onChange={(e) => setNewDeckName(e.target.value)}
                             />
-                            <FaPen onClick={editDeck} title="Edit Deck" className="cursor-pointer" />
+                            <FaPen onClick={editDeck} title="Edit Deck" className="cursor-pointer text-purple" />
                         </form>
                     </>
                 )}
@@ -99,7 +99,7 @@ export default function DeckPage() {
             <>
                 <ul className="flex-col w-2/4 justify-items-center justify-center items-center  text-center m-auto">
                     {currentDeck.Cards.map((card,index) => (
-                        <li key={index}>
+                        <li className="" key={index}>
                             <CardComponent card={card} index={index} currentSet={currentSet} currentDeck={currentDeck}/>
                         </li>
                     ))}
