@@ -32,16 +32,13 @@ const FlashCardHome = () => {
 
   return (
     <div>
-      <div className='h-40 p-10 text-purple'>
-        <h1>Decks</h1>
+      <div className='h-30 p-5 text-purple flex justify-center'>
+        <h1 className='font-bold text-4xl text-center border border-b-purple w-[70%] p-5'>Decks</h1>
       </div>
 
-      <div className='flex flex-col items-center text-black'>
+      <div className='flex flex-col gap-7 items-center text-black mt-5'>
         <div id='create-deck' className='flex items-center'>
-          <button className='mr-4' onClick={() => setModalContent(<CreateDeckForm />)}>
-            <BsPlusCircleFill size={35} color='#3f83ec' />
-          </button>
-          <div>Create new deck</div>
+          <button className='bg-purple text-white font-bold text-1xl p-4 rounded-xl'>Create new deck</button>
         </div>
 
         {decks.map(deck => (
