@@ -1,16 +1,25 @@
 "use client"
 
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import SignInForm from '../SignInModal';
 import SignupForm from '../SignupModal';
 import { useModal } from '@/context/Modal';
 import { useRouter } from 'next/navigation';
 import { auth } from '@/app/firebase';
+import { getAuth, onAuthStateChanged } from "firebase/auth";
 
 const NavBar = () => {
   const { setModalContent } = useModal();
   const router = useRouter();
-  const currentUser = auth.currentUser;
+  const [currentUser, setCurrentUser] = useState(auth.currentUser);
+
+  useEffect(() => {
+    setCurrentUser(auth.currentUser)
+  }, []);
+
+  onAuthStateChanged(auth, (currentUser) => {
+    setCurrentUser(auth.currentUser)
+  })
 
   const SignOutUser = () => {
     auth.signOut();

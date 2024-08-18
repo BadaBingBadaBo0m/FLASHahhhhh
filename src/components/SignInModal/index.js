@@ -18,7 +18,6 @@ const SignInForm = () => {
       .then((userCredential) => {
         // Signed in 
         const user = userCredential.user;
-        console.log('user signed in', user)
         closeModal();
         return user;
       })
@@ -29,7 +28,6 @@ const SignInForm = () => {
         return { errorCode, errorMessage }
       });
 
-    console.log("bruh");
   }
 
 
