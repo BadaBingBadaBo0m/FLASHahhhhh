@@ -46,7 +46,7 @@ const FlashCardHome = () => {
             <div className='flex gap-8 items-center'>
               <h1 className='text-2xl text-purple font-bold'>{deck.Name}</h1>
 
-              <Link href={'/carousel'}>
+              <Link href={`/decks/study/${deck.id}`}>
                 <button className='bg-purple text-white w-20 h-12 rounded-xl'>Study</button>
               </Link>
 
@@ -59,7 +59,7 @@ const FlashCardHome = () => {
                 <button className='bg-purple w-20 h-12 rounded-l-lg'>Edit Deck</button>
               </Link>
               <button className='bg-purple w-20 h-12 rounded-r-lg' onClick={() => setModalContent(<DeleteDeckForm deckId={deck.id} />)}>Delete Deck</button>
-              {/* <button onClick={() => console.log(deck)}>Print</button> */}
+              {/* <button onClick={() => console.log(deck.id)} className='text-black'>Print</button> */}
             </div>
           </div>
         ))}
