@@ -26,8 +26,8 @@ const NavBar = () => {
       <div id='nav-button-container'>
         {currentUser ?
           <>
-            <button className='mr-[3px]' onClick={() => router.push('/decks')}>Flashcards</button>
-            <button onClick={() => SignOutUser()}>Sign Out</button>
+            <button className='bg-purple w-20 h-10 rounded-l-lg font-bold text-sm mr-[3px]' onClick={() => router.push('/decks')}>Flashcards</button>
+            <button className='bg-purple w-20 h-10 rounded-r-lg font-bold text-sm' onClick={() => SignOutUser()}>Sign Out</button>
           </>
           :
           <>
