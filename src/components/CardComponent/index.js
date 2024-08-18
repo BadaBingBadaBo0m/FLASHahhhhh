@@ -9,9 +9,20 @@ const CardComponent= ({card, index, currentSet, currentDeck}) =>{
     const router = useRouter();
     const cards = currentDeck.Cards;
     const [updatedCards, setUpdatedCards] = useState(cards);
-    const [editCard, setEditCard] = useState(false);
+    const [editingCard, setEditingCard] = useState(false);
     const [newQuestion, setNewQuestion] = useState(card.question);
     const [newAnswer, setNewAnswer] = useState(card.answer);
+
+    const editCard = async (e) => {
+        e.preventDefault();
+        updatedCards.splice(index, 1, {question: newQuestion, answer: newAnswer});
+        await updateDoc(currentSet, {
+           Cards: updatedCards
+        });
+        setUpdatedCards(cards);
+        setEditingCard(false)
+        router.refresh();
+    }
 
     const deleteCard = async (e) => {
         e.preventDefault();
@@ -23,11 +34,9 @@ const CardComponent= ({card, index, currentSet, currentDeck}) =>{
         router.refresh();
     }
 
-    console.log(editCard)
-
     return (
         <div className="text-lg grid grid-cols-6 grid-rows-1 gap-4 w-full p-3 my-5 text-black border-black border-2">
-            {editCard ? (
+            {editingCard ? (
                 <>
                         <input
                             className=" col-span-2 p-2"
@@ -37,7 +46,7 @@ const CardComponent= ({card, index, currentSet, currentDeck}) =>{
                             className=" col-span-2 col-start-3 border-black p-2 text-black"
                             value={newAnswer}
                             onChange={(e) => setNewAnswer(e.target.value)} />
-                    <button onClick={() => setEditCard(false)} className="col-start-5 border rounded-full bg-purple text-white p-2">Edit</button>
+                    <button onClick={editCard} className="col-start-5 border rounded-full bg-purple text-white p-2">Edit</button>
                 </>
             ) : (
                 <>
@@ -47,7 +56,7 @@ const CardComponent= ({card, index, currentSet, currentDeck}) =>{
                     <div className="col-span-2 col-start-3 border-black p-2 text-black">
                         <h1>{card.answer}</h1>
                     </div>
-                    <button onClick={() => setEditCard(true)} className="col-start-5 border rounded-full bg-purple text-white p-2">Edit</button>
+                    <button onClick={() => setEditingCard(true)} className="col-start-5 border rounded-full bg-purple text-white p-2">Edit</button>
                 </>
             )}
 
