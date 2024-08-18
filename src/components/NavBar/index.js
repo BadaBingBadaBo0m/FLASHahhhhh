@@ -30,7 +30,7 @@ const NavBar = () => {
 
   return (
     <div className='flex justify-between p-5 bg-Navbar h-20 sticky top-0 z-50 w-[60%] left-[20%] rounded-full'>
-      <h1 className='flex items-center text-purple text-4xl font-bold' onClick={() => router.push("/")}>FLASH<span className='text-xs ml-1 text-blue-400'>ahhhhh</span></h1>
+      <h1 className='flex items-center text-purple text-4xl font-bold cursor-pointer' onClick={() => router.push("/")}>FLASH<span className='text-xs ml-1 text-blue-400'>ahhhhh</span></h1>
 
       <div id='nav-button-container'>
         {currentUser ?
