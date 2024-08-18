@@ -9,7 +9,7 @@ const CarouselTest = () => {
   ];
 
   return (
-    <div className="w-[60%] h-screen m-auto pt-11 ">
+    <div className="w-[60%] h-screen m-auto pt-11 pb-40 ">
       <Carousel slides={slides} />
     </div>
   );
