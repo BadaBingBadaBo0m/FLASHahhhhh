@@ -49,7 +49,7 @@ const FlashCardHome = () => {
 
       <div className='flex flex-col gap-7 items-center text-black mt-5'>
         <div id='create-deck' className='flex items-center'>
-          <button onClick={() => setModalContent(<CreateDeckForm  />)} className='bg-purple text-white font-bold text-1xl p-4 rounded-xl mr-4 w-52'>Create new deck</button>
+          <button onClick={() => setModalContent(<CreateDeckForm />)} className='bg-purple text-white font-bold text-1xl p-4 rounded-xl mr-4 w-52'>Create new deck</button>
           <button onClick={() => setModalContent(<GenerateDeckForm ownerId={currentUser?.uid} />)} className='bg-purple text-white font-bold text-1xl p-4 rounded-xl w-52'>Generate new deck</button>
         </div>
 
@@ -71,7 +71,7 @@ const FlashCardHome = () => {
               <Link href={`/decks/edit/${deck.id}`}>
                 <button className='bg-purple w-20 h-12 rounded-l-lg'>Edit Deck</button>
               </Link>
-              <button className='bg-purple w-20 h-12 rounded-r-lg' onClick={() => setModalContent(<DeleteDeckForm deckId={deck.id} />)}>Delete Deck</button>
+              <button className='bg-purple w-20 h-12 rounded-r-lg' onClick={() => setModalContent(<DeleteDeckForm deck={deck} currentUser={currentUser} />)}>Delete Deck</button>
               {/* <button onClick={() => console.log(deck)} className='text-black'>Print</button> */}
             </div>
           </div>
