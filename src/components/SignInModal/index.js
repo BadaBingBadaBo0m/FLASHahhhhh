@@ -9,7 +9,8 @@ import SignupForm from '../SignupModal';
 const SignInForm = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const { setModalContent, closeModal } = useModal()
+  const { setModalContent, closeModal } = useModal();
+  const [errors, setErrors] = useState("");
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -19,13 +20,14 @@ const SignInForm = () => {
         // Signed in 
         const user = userCredential.user;
         closeModal();
+        setErrors("");
         return user;
       })
       .catch((error) => {
-        const errorCode = error.code;
         const errorMessage = error.message;
-        console.log('errors', errorMessage);
-        return { errorCode, errorMessage }
+        if (errorMessage.includes("invalid-email")) return setErrors("Email is Invalid!"); 
+        if (errorMessage.includes("missing-password")) return setErrors("Password is Missing!"); 
+        if (errorMessage.includes("invalid-credential")) return setErrors("Password is Invalid!"); 
       });
 
   }
@@ -35,7 +37,13 @@ const SignInForm = () => {
     <div className='text-black'>
       <form onSubmit={handleSubmit} className="flex flex-col w-96 h-96 p-8 items-center justify-between border-2 border-border-blue rounded-2xl bg-nav-background">
         <h1 className='text-3xl'>Sign In</h1>
-
+        {errors ? (
+          <>
+            <p className='text-red-700 text-2xl'>{errors}</p>
+          </>
+        ) : (
+          <></>
+        )}
         <input
           placeholder="Email Address"
           type='email'
