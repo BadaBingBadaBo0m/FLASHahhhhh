@@ -53,7 +53,7 @@ export default function DeckPage() {
       answer: newCard.answer.trim(),
     };
 
-    await setDoc(currentSet, {
+    await updateDoc(currentSet, {
       Name: currentDeck.Name,
       Cards: [...currentDeck.Cards, card]
     })
