@@ -17,7 +17,10 @@ const CardComponent= ({card, index, currentSet, currentDeck}) =>{
         e.preventDefault();
         updatedCards.splice(index, 1, {question: newQuestion, answer: newAnswer});
         await updateDoc(currentSet, {
-           Cards: updatedCards
+           Cards: updatedCards,
+           Description: currentDeck.Description,
+           ownerId: currentDeck.ownerId,
+           Name: currentDeck.Name
         });
         setUpdatedCards(cards);
         setEditingCard(false)
@@ -28,7 +31,10 @@ const CardComponent= ({card, index, currentSet, currentDeck}) =>{
         e.preventDefault();
         updatedCards.splice(index, 1);
         await updateDoc(currentSet, {
-           Cards: updatedCards
+           Cards: updatedCards,
+           Description: currentDeck.Description,
+           ownerId: currentDeck.ownerId,
+           Name: currentDeck.Name
         });
         setUpdatedCards(cards);
         router.refresh();

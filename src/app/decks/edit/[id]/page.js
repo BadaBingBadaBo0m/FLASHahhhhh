@@ -29,7 +29,10 @@ export default function DeckPage() {
     if (!newDeckName) return setDisableInput(true);
     
     await updateDoc(currentSet, {
-        Name: newDeckName
+        Name: newDeckName,
+        Description: currentDeck.Description,
+        Cards: currentDeck.Cards,
+        ownerId: currentDeck.ownerId
     })
 
     setDisableInput(true)
@@ -53,9 +56,11 @@ export default function DeckPage() {
       answer: newCard.answer.trim(),
     };
 
-    await setDoc(currentSet, {
+    await updateDoc(currentSet, {
       Name: currentDeck.Name,
-      Cards: [...currentDeck.Cards, card]
+      Cards: [...currentDeck.Cards, card],
+      Description: currentDeck.Description,
+      ownerId: currentDeck.ownerId
     })
 
     setNewCard({ question: "", answer: "" });
