@@ -9,6 +9,7 @@ import { useRouter } from 'next/navigation';
 import { useModal } from '@/context/Modal';
 import CreateDeckForm from '@/components/CreateDeck';
 import DeleteDeckForm from '@/components/DeleteDeck';
+import GenerateDeckForm from '@/components/GenerateDeckFrom';
 
 const FlashCardHome = () => {
   const [decks, setDecks] = useState([]);
@@ -37,7 +38,8 @@ const FlashCardHome = () => {
 
       <div className='flex flex-col gap-7 items-center text-black mt-5'>
         <div id='create-deck' className='flex items-center'>
-          <button onClick={() => setModalContent(<CreateDeckForm />)} className='bg-purple text-white font-bold text-1xl p-4 rounded-xl'>Create new deck</button>
+          <button onClick={() => setModalContent(<CreateDeckForm />)} className='bg-purple text-white font-bold text-1xl p-4 rounded-xl mr-4 w-52'>Create new deck</button>
+          <button onClick={() => setModalContent(<GenerateDeckForm />)} className='bg-purple text-white font-bold text-1xl p-4 rounded-xl w-52'>Generate new deck</button>
         </div>
 
         {decks.map(deck => (
@@ -59,7 +61,7 @@ const FlashCardHome = () => {
                 <button className='bg-purple w-20 h-12 rounded-l-lg'>Edit Deck</button>
               </Link>
               <button className='bg-purple w-20 h-12 rounded-r-lg' onClick={() => setModalContent(<DeleteDeckForm deckId={deck.id} />)}>Delete Deck</button>
-              {/* <button onClick={() => console.log(deck.id)} className='text-black'>Print</button> */}
+              {/* <button onClick={() => console.log(deck)} className='text-black'>Print</button> */}
             </div>
           </div>
         ))}
