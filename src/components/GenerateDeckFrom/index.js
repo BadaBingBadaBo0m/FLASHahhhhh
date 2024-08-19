@@ -25,7 +25,7 @@ const GenerateDeckForm = () => {
 
       if (count && count <= 10) setCountError("");
       return;
-    } 
+    }
 
     const deck = await runGemini(subject, count);
 
@@ -33,19 +33,19 @@ const GenerateDeckForm = () => {
       Name: subject,
       Cards: deck.Cards
     })
-  
+
     closeModal();
   }
 
   return (
-    <form className="flex flex-col items-center gap-7 p-16" onSubmit={handleSubmit}>
+    <form className="flex flex-col items-center gap-7 p-12" onSubmit={handleSubmit}>
       <h1 className="text-purple text-2xl font-bold">Generate new Deck</h1>
 
       {subjectError ? (
         <>
           <p className='text-red-700 text-lg'>{subjectError}</p>
         </>
-      ):  (
+      ) : (
         <></>
       )}
 
@@ -60,7 +60,7 @@ const GenerateDeckForm = () => {
         <>
           <p className='text-red-700 text-lg'>{countError}</p>
         </>
-      ):  (
+      ) : (
         <></>
       )}
 
