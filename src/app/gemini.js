@@ -20,7 +20,7 @@ const generationConfig = {
 };
 
 export async function runGemini(subject, count) {
-  const prompt = `You are generating Flash cards for studying ${subject}. Please generate me a set of ${count} flash cards about ${subject}. Format the JSON as such: {"Cards": [{"question": "", "answer": ""}]}`
+  const prompt = `You are generating Flash cards for studying ${subject}. Please generate me a set of ${count} flash cards about ${subject}. Please write a short description (no more than 100 characters) about the deck. Format the JSON as such: {"Cards": [{"question": "", "answer": ""}], "Description": ""}`
   const chatSession = model.startChat({
     generationConfig,
     // safetySettings: Adjust safety settings

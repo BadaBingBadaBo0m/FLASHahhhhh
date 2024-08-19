@@ -6,7 +6,7 @@ import { runGemini } from "@/app/gemini";
 import { addDoc, collection } from "firebase/firestore";
 import { db } from "@/app/firebase";
 
-const GenerateDeckForm = ({ownerId}) => {
+const GenerateDeckForm = ({ ownerId }) => {
   const [subject, setSubject] = useState("");
   const [count, setCount] = useState();
   const [subjectError, setsubjectError] = useState();
@@ -32,6 +32,7 @@ const GenerateDeckForm = ({ownerId}) => {
     await addDoc(collection(db, "Decks"), {
       Name: subject,
       Cards: deck.Cards,
+      Description: deck.Description,
       ownerId: ownerId
     })
 
