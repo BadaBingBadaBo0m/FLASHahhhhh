@@ -70,6 +70,7 @@ const GenerateDeckForm = ({ownerId}) => {
         value={count}
         onChange={(e) => setCount(e.target.value)}
         type="number"
+        disabled={false}
         className="text-black border border-gray-400 p-2 outline-none"
       />
 
