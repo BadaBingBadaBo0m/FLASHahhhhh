@@ -55,7 +55,7 @@ const SignInForm = () => {
           className='w-64 h-11 p-2 rounded-sm outline-none bg-nav-background border border-gray-400'
         />
 
-        <button className='bg-blue-500 w-36 h-11 rounded-full font-bold text-lg' type="submit" onClick={handleSubmit}>Sign In</button>
+        <button className='bg-purple text-white w-36 h-11 rounded-full font-bold text-lg' type="submit" onClick={handleSubmit}>Sign In</button>
         <div>Don't have an account? <a className='cursor-pointer text-blue-500' onClick={() => setModalContent(<SignupForm />)}>Sign up</a>!</div>
       </form>
     </div>
