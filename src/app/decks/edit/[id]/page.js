@@ -37,7 +37,6 @@ export default function DeckPage() {
     getOneDoc();
   }
 
-
   useEffect(() => {
     getOneDoc();
     setNewDeckName(currentDeck.Name)

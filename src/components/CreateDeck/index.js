@@ -5,7 +5,7 @@ import { useModal } from "@/context/Modal";
 import { addDoc, collection } from "firebase/firestore";
 import { db } from "@/app/firebase";
 
-const CreateDeckForm = () => {
+const CreateDeckForm = ({ownerId}) => {
   const [name, setName] = useState("");
   const [description, setDescription] = useState("");
   const { closeModal } = useModal();
@@ -18,7 +18,8 @@ const CreateDeckForm = () => {
     await addDoc(collection(db, "Decks"), {
       Name: name,
       Description: description,
-      Cards: []
+      Cards: [],
+      ownerId: ownerId
     });
 
     setName("");
