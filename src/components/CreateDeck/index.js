@@ -4,13 +4,15 @@ import React, { useState } from "react";
 import { useModal } from "@/context/Modal";
 import { addDoc, collection } from "firebase/firestore";
 import { db } from "@/app/firebase";
+import { auth } from '../../app/firebase';
 
-const CreateDeckForm = ({ownerId}) => {
+const CreateDeckForm = () => {
   const [name, setName] = useState("");
   const [description, setDescription] = useState("");
   const [nameError, setNameError] = useState();
   const [descriptionError, setDescriptionError] = useState();
   const { closeModal } = useModal();
+  const currentUser = auth.currentUser;
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -33,7 +35,7 @@ const CreateDeckForm = ({ownerId}) => {
       Name: name,
       Description: description,
       Cards: [],
-      ownerId: ownerId
+      ownerId: currentUser.uid
     });
 
     setName("");
