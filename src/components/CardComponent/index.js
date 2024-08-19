@@ -39,11 +39,11 @@ const CardComponent= ({card, index, currentSet, currentDeck}) =>{
             {editingCard ? (
                 <>
                         <input
-                            className=" col-span-2 p-2"
+                            className=" col-span-2 p-2 break-words text-prett"
                             value={newQuestion}
                             onChange={(e) => setNewQuestion(e.target.value)} />
                         <input
-                            className=" col-span-2 col-start-3 border-black p-2 text-black"
+                            className=" col-span-2 col-start-3 border-black p-2 text-black break-words text-prett"
                             value={newAnswer}
                             onChange={(e) => setNewAnswer(e.target.value)} />
                     <button onClick={editCard} className="col-start-5 border rounded-full bg-purple text-white p-2">Edit</button>
@@ -51,10 +51,10 @@ const CardComponent= ({card, index, currentSet, currentDeck}) =>{
             ) : (
                 <>
                     <div className="col-span-2 p-2 ">
-                        <h1 className="border-black">{card.question}</h1> 
+                        <h1 className="border-black break-words text-pretty">{card.question}</h1> 
                      </div>
-                    <div className="col-span-2 col-start-3 border-black p-2 text-black">
-                        <h1>{card.answer}</h1>
+                    <div className="col-span-2 col-start-3 border-black p-2 text-black ">
+                        <h1 className="text-pretty break-words">{card.answer}</h1>
                     </div>
                     <button onClick={() => setEditingCard(true)} className="col-start-5 h-12 border rounded-full bg-purple text-white p-2">Edit</button>
                 </>
