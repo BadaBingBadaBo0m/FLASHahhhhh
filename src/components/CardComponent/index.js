@@ -19,7 +19,7 @@ const CardComponent= ({card, index, currentSet, currentDeck}) =>{
         await updateDoc(currentSet, {
            Cards: updatedCards,
            Description: currentDeck.Description,
-           ownerId: ownerId,
+           ownerId: currentDeck.ownerId,
            Name: currentDeck.Name
         });
         setUpdatedCards(cards);
@@ -33,7 +33,7 @@ const CardComponent= ({card, index, currentSet, currentDeck}) =>{
         await updateDoc(currentSet, {
            Cards: updatedCards,
            Description: currentDeck.Description,
-           ownerId: ownerId,
+           ownerId: currentDeck.ownerId,
            Name: currentDeck.Name
         });
         setUpdatedCards(cards);

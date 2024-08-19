@@ -32,7 +32,7 @@ export default function DeckPage() {
         Name: newDeckName,
         Description: currentDeck.Description,
         Cards: currentDeck.Cards,
-        ownerId: ownerId
+        ownerId: currentDeck.ownerId
     })
 
     setDisableInput(true)
@@ -60,7 +60,7 @@ export default function DeckPage() {
       Name: currentDeck.Name,
       Cards: [...currentDeck.Cards, card],
       Description: currentDeck.Description,
-      ownerId: ownerId
+      ownerId: currentDeck.ownerId
     })
 
     setNewCard({ question: "", answer: "" });
