@@ -15,7 +15,7 @@ export default function Home() {
     setSlides(res)
     console.log(res, "deck")
   }
-
+  
   useEffect(() => {
     generateCards();
   }, [])
@@ -51,11 +51,7 @@ export default function Home() {
             </div>
 
           </div>
-
-
         </div>
-
-
       </div>
     </div>
   );

@@ -56,11 +56,11 @@ const CardComponent= ({card, index, currentSet, currentDeck}) =>{
                     <div className="col-span-2 col-start-3 border-black p-2 text-black">
                         <h1>{card.answer}</h1>
                     </div>
-                    <button onClick={() => setEditingCard(true)} className="col-start-5 border rounded-full bg-purple text-white p-2">Edit</button>
+                    <button onClick={() => setEditingCard(true)} className="col-start-5 h-12 border rounded-full bg-purple text-white p-2">Edit</button>
                 </>
             )}
 
-            <button onClick={deleteCard} className="col-start-6 bg-purple text-white border-2 border-black rounded-full p-2">Delete</button>
+            <button onClick={deleteCard} className="col-start-6 h-12 bg-purple text-white border-2 border-black rounded-full p-2">Delete</button>
         </div>
     );
 }
