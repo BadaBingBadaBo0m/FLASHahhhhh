@@ -18,7 +18,12 @@ const FlashCardHome = () => {
   const currentUser = auth.currentUser;
 
   useEffect(() => {
-    const q = query(collection(db, "Decks"), where("ownerId", "==", currentUser?.uid));
+    try {
+      const q = query(collection(db, "Decks"), where("ownerId", "==", currentUser?.uid));
+    } catch (errpr) {
+      return;
+    }
+    
 
     const unsubscribe = onSnapshot(q, (querySnapshot) => {
       const deckArr = [];
