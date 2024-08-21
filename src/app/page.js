@@ -39,18 +39,6 @@ export default function Home() {
               <Carousel slides={deck?.Cards ? deck.Cards : [{ question: "Loading...", answer: "loading..." }]} />
             </div>
           </div>
-
-          <div className='text-black w-full bg-background flex py-14' id='pricing-div'>
-
-            <div className='w-[50%]'>
-              <div className='text-9xl text-purple'>$5</div>
-            </div>
-
-            <div className='w-[50%] text-2xl flex justify-center items-center'>
-              <h1 className=''>For just $5 a month you can have an unlimited amount of decks</h1>
-            </div>
-
-          </div>
         </div>
       </div>
     </div>

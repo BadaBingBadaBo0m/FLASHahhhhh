@@ -36,6 +36,9 @@ const GenerateDeckForm = ({ ownerId }) => {
       ownerId: ownerId
     })
 
+    setSubjectError("");
+    setCountError("")
+
     closeModal();
   }
 
