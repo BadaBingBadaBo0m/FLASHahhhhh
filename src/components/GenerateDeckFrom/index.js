@@ -9,7 +9,7 @@ import { db } from "@/app/firebase";
 const GenerateDeckForm = ({ ownerId }) => {
   const [subject, setSubject] = useState("");
   const [count, setCount] = useState(null);
-  const [subjectError, setsubjectError] = useState();
+  const [subjectError, setSubjectError] = useState();
   const [countError, setCountError] = useState();
   const { closeModal } = useModal();
 
@@ -17,11 +17,11 @@ const GenerateDeckForm = ({ ownerId }) => {
     e.preventDefault();
 
     if (!subject || subject.length > 30 || !count || count > 20) {
-      if (!subject || subject.length > 30) setsubjectError("Add a name for your subject that`s between 1 and 30 characters");
+      if (!subject || subject.length > 30) setSubjectError("Add a name for your subject that`s between 1 and 30 characters");
 
       if (!count || count > 20) setCountError("Add a valid count between 1 or 20!");
 
-      if (subject && subject.length <= 30) setsubjectError("");
+      if (subject && subject.length <= 30) setSubjectError("");
 
       if (count && count <= 20) setCountError("");
       return;

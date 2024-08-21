@@ -43,13 +43,27 @@ export default function DeckPage() {
   useEffect(() => {
     getOneDoc();
     setNewDeckName(currentDeck.Name)
+    console.log(currentDeck)
   }, []);
 
   const [newCard, setNewCard] = useState({ question: "", answer: "" });
+  const [questionError, setQuestionError] = useState("");
+  const [answerError, setAnswerError] = useState("");
 
   const addCard = async (e) => {
     e.preventDefault();
-    if (!newCard.question || !newCard.answer) return ;
+
+    if (!newCard.question || newCard.question.length > 150 || !newCard.answer || newCard.answer.length >> 150) {
+      if (!newCard.question || newCard.question.length > 150) setQuestionError("Question must be between 1 and 150 characters!");
+
+      if (!newCard.answer || newCard.answer.length > 150) setAnswerError("Answer must be between 1 and 150 characters!");
+
+      if (newCard.question && newCard.question.length <= 30) setQuestionError("");
+
+      if (newCard.answer && newCard.answer.length <= 20) setAnswerError("");
+
+      return;
+    }
   
     const card = {
       question: newCard.question.trim(),
@@ -64,6 +78,8 @@ export default function DeckPage() {
     })
 
     setNewCard({ question: "", answer: "" });
+    setQuestionError("");
+    setAnswerError("");
     getOneDoc();
   }
 
@@ -116,25 +132,44 @@ export default function DeckPage() {
             </>
         )}
 
+        <div className="flex justify-center ">
+        {questionError ? (
+          <>
+            <p className='text-red-700 text-lg '>{questionError}</p>
+          </>
+        ) : (
+          <></>
+        )}
+
+        {answerError ? (
+          <>
+            <p className='text-red-700 text-lg mx-32'>{answerError}</p>
+          </>
+        ) : (
+          <></>
+        )}
+        </div>
+
         <form className="grid grid-cols-5 grid-rows-1 gap-4 p-5 mx-[20%] w-[60%] my-auto">
-            <input 
+          <input 
             className="col-span-2 h-10 font-bold rounded-lg p-3 text-black text-lg" 
             placeholder="Question"
             value={newCard.question}
             onChange={(e) => setNewCard({ ...newCard, question: e.target.value })}
-        />
-        <input 
+          />
+
+          <input 
             className="col-span-2 col-start-3 font-bold rounded-lg text-black h-10 p-3 text-lg"
             placeholder="Answer" 
             value={newCard.answer}
             onChange={(e) => setNewCard({ ...newCard, answer: e.target.value })}
-        />
-        <button 
+          />
+          <button 
             onClick={addCard}
             className="col-start-5 rounded-lg bg-purple h-11 text-2xl p-1">
             +
-        </button>
-      </form>
-    </>
-  );
+          </button>
+        </form>
+      </>
+    );
 }

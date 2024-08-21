@@ -41,7 +41,7 @@ const CardComponent= ({card, index, currentSet, currentDeck}) =>{
     }
 
     return (
-        <div className="text-lg grid grid-cols-6 grid-rows-1 gap-4 w-full p-3 my-5 text-black border-black border-2">
+        <div className="text-lg items-center grid grid-cols-6 grid-rows-1 gap-4 w-full p-3 my-5 text-black border-black border-2">
             {editingCard ? (
                 <>
                         <input
