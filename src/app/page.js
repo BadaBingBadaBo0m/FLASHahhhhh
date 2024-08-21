@@ -14,6 +14,11 @@ export default function Home() {
     const res = await randomDeck();
     setSlides(res)
   }
+
+  const generateCardButton = async () => {
+    setSlides([{ question: "Loading...", answer: "loading..." }]);
+    generateCards()
+  }
   
   useEffect(() => {
     generateCards();
@@ -27,13 +32,14 @@ export default function Home() {
 
           <div className='flex flex-col gap-8 items-center pb-8'>
             <h1 className='text-black font-bold text-6xl'>Studying made <span className='text-purple'>easy</span></h1>
-            <button className='bg-purple p-7 rounded-lg w-56' onClick={() => setModalContent(<SignupForm />)}>GET STARTED</button>
+            <button className='bg-purple p-7 rounded-lg w-56 text-xl hover:bg-fuchsia-950 text-bold' onClick={() => setModalContent(<SignupForm />)}>GET STARTED</button>
             <div className='text-black font-bold text-2xl'>Flash is free to use for as long as you'd like</div>
           </div>
 
           <div className='w-full h-[40rem] bg-background pt-12 flex justify-around'>
             <div className='w-[55%] h-full'>
               <Carousel slides={deck?.Cards ? deck.Cards : [{ question: "Loading...", answer: "loading..." }]} />
+              <button onClick={generateCardButton} className='text-2xl text-bold bg-purple text-white my-5 p-5 rounded-full hover:bg-fuchsia-950'>Generate Deck</button>
             </div>
             <div className='w-[30%] text-black flex flex-col text-bold text-xl text-left justify-center'>
                 <h1 className='font-bold text-5xl mb-5'>

@@ -49,8 +49,8 @@ const FlashCardHome = () => {
 
       <div className='flex flex-col gap-7 items-center text-black mt-5'>
         <div id='create-deck' className='flex items-center'>
-          <button onClick={() => setModalContent(<CreateDeckForm />)} className='bg-purple text-white font-bold text-1xl p-4 rounded-xl mr-4 w-52'>Create new deck</button>
-          <button onClick={() => setModalContent(<GenerateDeckForm ownerId={currentUser?.uid} />)} className='bg-purple text-white font-bold text-1xl p-4 rounded-xl w-52'>Generate new deck</button>
+          <button onClick={() => setModalContent(<CreateDeckForm />)} className='bg-purple text-white font-bold text-1xl p-4 rounded-xl mr-4 w-52 hover:bg-fuchsia-950'>Create new deck</button>
+          <button onClick={() => setModalContent(<GenerateDeckForm ownerId={currentUser?.uid} />)} className='bg-purple text-white font-bold text-1xl p-4 rounded-xl w-52 hover:bg-fuchsia-950'>Generate new deck</button>
         </div>
 
         {decks.map(deck => (
@@ -60,7 +60,7 @@ const FlashCardHome = () => {
               <h1 className='text-2xl text-purple font-bold'>{deck.Name}</h1>
 
               <Link href={`/decks/study/${deck.id}`}>
-                <button className='bg-purple text-white w-20 h-12 rounded-xl'>Study</button>
+                <button className='bg-purple text-white w-20 h-12 rounded-xl hover:bg-fuchsia-950'>Study</button>
               </Link>
 
               <p>{deck.Description}</p>
@@ -69,9 +69,9 @@ const FlashCardHome = () => {
 
             <div className='flex gap-1 text-white'>
               <Link href={`/decks/edit/${deck.id}`}>
-                <button className='bg-purple w-20 h-12 rounded-l-lg'>Edit Deck</button>
+                <button className='bg-purple w-20 h-12 rounded-l-lg hover:bg-fuchsia-950'>Edit Deck</button>
               </Link>
-              <button className='bg-purple w-20 h-12 rounded-r-lg' onClick={() => setModalContent(<DeleteDeckForm deck={deck} currentUser={currentUser} />)}>Delete Deck</button>
+              <button className='bg-purple w-20 h-12 rounded-r-lg hover:bg-fuchsia-950' onClick={() => setModalContent(<DeleteDeckForm deck={deck} currentUser={currentUser} />)}>Delete Deck</button>
               {/* <button onClick={() => console.log(deck)} className='text-black'>Print</button> */}
             </div>
           </div>

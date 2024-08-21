@@ -166,7 +166,7 @@ export default function DeckPage() {
           />
           <button 
             onClick={addCard}
-            className="col-start-5 rounded-lg bg-purple h-11 text-2xl p-1">
+            className="col-start-5 rounded-lg bg-purple h-11 text-2xl p-1 hover:bg-fuchsia-950">
             +
           </button>
         </form>

@@ -35,13 +35,13 @@ const NavBar = () => {
       <div id='nav-button-container'>
         {currentUser ?
           <>
-            <button className='bg-purple w-20 h-10 rounded-l-lg font-bold text-sm mr-[3px]' onClick={() => router.push('/decks')}>Flashcards</button>
-            <button className='bg-purple w-20 h-10 rounded-r-lg font-bold text-sm' onClick={() => SignOutUser()}>Sign Out</button>
+            <button className='bg-purple w-20 h-10 rounded-l-lg font-bold text-sm mr-[3px] hover:bg-fuchsia-950' onClick={() => router.push('/decks')}>Flashcards</button>
+            <button className='bg-purple w-20 h-10 rounded-r-lg font-bold text-sm hover:bg-fuchsia-950' onClick={() => SignOutUser()}>Sign Out</button>
           </>
           :
           <>
-            <button className='bg-purple w-20 h-10 rounded-l-lg font-bold text-sm mr-[3px]' onClick={() => setModalContent(<SignInForm />)}>Sign In</button>
-            <button className='bg-purple w-20 h-10 rounded-r-lg font-bold text-sm' onClick={() => setModalContent(<SignupForm />)}>Sign Up</button>
+            <button className='bg-purple w-20 h-10 rounded-l-lg font-bold text-sm mr-[3px] hover:bg-fuchsia-950' onClick={() => setModalContent(<SignInForm />)}>Sign In</button>
+            <button className='bg-purple w-20 h-10 rounded-r-lg font-bold text-sm hover:bg-fuchsia-950' onClick={() => setModalContent(<SignupForm />)}>Sign Up</button>
           </>
         }
       </div>
