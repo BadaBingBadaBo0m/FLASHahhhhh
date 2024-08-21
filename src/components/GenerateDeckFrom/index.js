@@ -8,7 +8,7 @@ import { db } from "@/app/firebase";
 
 const GenerateDeckForm = ({ ownerId }) => {
   const [subject, setSubject] = useState("");
-  const [count, setCount] = useState();
+  const [count, setCount] = useState(null);
   const [subjectError, setsubjectError] = useState();
   const [countError, setCountError] = useState();
   const { closeModal } = useModal();
@@ -16,14 +16,14 @@ const GenerateDeckForm = ({ ownerId }) => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    if (!subject || subject.length > 20 || !count || count > 10) {
-      if (!subject || subject.length > 20) setsubjectError("Add a name for your subject that`s between 1 and 20 characters");
+    if (!subject || subject.length > 30 || !count || count > 20) {
+      if (!subject || subject.length > 30) setsubjectError("Add a name for your subject that`s between 1 and 30 characters");
 
-      if (!count || count > 10) setCountError("Add a valid count between 1 or 10!");
+      if (!count || count > 20) setCountError("Add a valid count between 1 or 20!");
 
-      if (subject && subject.length <= 20) setsubjectError("");
+      if (subject && subject.length <= 30) setsubjectError("");
 
-      if (count && count <= 10) setCountError("");
+      if (count && count <= 20) setCountError("");
       return;
     }
 
