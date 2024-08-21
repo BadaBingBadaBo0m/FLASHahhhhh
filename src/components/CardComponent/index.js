@@ -12,9 +12,24 @@ const CardComponent= ({card, index, currentSet, currentDeck}) =>{
     const [editingCard, setEditingCard] = useState(false);
     const [newQuestion, setNewQuestion] = useState(card.question);
     const [newAnswer, setNewAnswer] = useState(card.answer);
+    const [questionError, setQuestionError] = useState("");
+    const [answerError, setAnswerError] = useState("");
 
     const editCard = async (e) => {
         e.preventDefault();
+        
+        if (!newQuestion || newQuestion.length > 150 || !newAnswer || newAnswer.length >> 150) {
+            if (!newQuestion || newQuestion.length > 150) setQuestionError("Question must be between 1 and 150 characters!");
+      
+            if (!newAnswer || newAnswer.length > 150) setAnswerError("Answer must be between 1 and 150 characters!");
+      
+            if (newQuestion && newQuestion.length <= 30) setQuestionError("");
+      
+            if (newAnswer && newAnswer.length <= 20) setAnswerError("");
+      
+            return;
+        }
+        
         updatedCards.splice(index, 1, {question: newQuestion, answer: newAnswer});
         await updateDoc(currentSet, {
            Cards: updatedCards,
@@ -22,8 +37,9 @@ const CardComponent= ({card, index, currentSet, currentDeck}) =>{
            ownerId: currentDeck.ownerId,
            Name: currentDeck.Name
         });
-        setUpdatedCards(cards);
         setEditingCard(false)
+        setQuestionError("");
+        setAnswerError("");
         router.refresh();
     }
 
@@ -37,23 +53,40 @@ const CardComponent= ({card, index, currentSet, currentDeck}) =>{
            Name: currentDeck.Name
         });
         router.refresh();
-
     }
 
-    console.log(cards, updatedCards)
-
     return (
+        <>
+                    <div className="flex justify-center ">
+        {questionError ? (
+            <>
+                <p className='text-red-700 text-lg '>{questionError}</p>
+            </>
+        ) : (
+            <></>
+        )}
+
+        {answerError ? (
+            <>
+                <p className='text-red-700 text-lg mx-5'>{answerError}</p>
+            </>
+        ) : (
+            <></>
+        )}
+    </div>
         <div className="text-lg items-center grid grid-cols-6 grid-rows-1 gap-4 w-full p-3 my-5 text-black border-black border-2">
             {editingCard ? (
                 <>
-                        <input
-                            className=" col-span-2 p-2 break-words text-prett"
-                            value={newQuestion}
-                            onChange={(e) => setNewQuestion(e.target.value)} />
-                        <input
-                            className=" col-span-2 col-start-3 border-black p-2 text-black break-words text-prett"
-                            value={newAnswer}
-                            onChange={(e) => setNewAnswer(e.target.value)} />
+                    <input
+                        className=" col-span-2 p-2 break-words text-prett"
+                        value={newQuestion}
+                        onChange={(e) => setNewQuestion(e.target.value)} 
+                    />
+                    <input
+                        className=" col-span-2 col-start-3 border-black p-2 text-black break-words text-prett"
+                        value={newAnswer}
+                        onChange={(e) => setNewAnswer(e.target.value)}
+                    />
                     <button onClick={editCard} className="col-start-5 border rounded-full bg-purple text-white p-2">Edit</button>
                 </>
             ) : (
@@ -70,6 +103,8 @@ const CardComponent= ({card, index, currentSet, currentDeck}) =>{
 
             <button onClick={deleteCard} className="col-start-6 h-12 bg-purple text-white border-2 border-black rounded-full p-2">Delete</button>
         </div>
+        </>
+
     );
 }
 
