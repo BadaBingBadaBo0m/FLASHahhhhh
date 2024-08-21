@@ -7,6 +7,7 @@ import { FaPen } from "react-icons/fa";
 import { usePathname } from 'next/navigation'
 import { useModal } from '@/context/Modal';
 import CardComponent from "@/components/CardComponent";
+import Link from 'next/link';
 
 export default function DeckPage() {
   const pathname = usePathname().split('/');
@@ -113,6 +114,12 @@ export default function DeckPage() {
                     </>
                 )}
             </div>
+        </div>
+        
+        <div className="w-full flex justify-center">
+          <Link href={`/decks/study/${deckId}`}>
+            <button className='bg-purple text-white w-20 h-12 rounded-xl hover:bg-fuchsia-950 mx-0'>Study</button>
+          </Link>
         </div>
 
         {currentDeck?.Cards?.length > 0 ? (

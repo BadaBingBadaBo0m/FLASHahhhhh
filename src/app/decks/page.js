@@ -37,7 +37,6 @@ const FlashCardHome = () => {
   });
 
   useEffect(() => {
-
     return () => fetchCategories();
   }, []);
 
