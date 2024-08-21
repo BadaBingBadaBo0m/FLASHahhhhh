@@ -36,9 +36,11 @@ const CardComponent= ({card, index, currentSet, currentDeck}) =>{
            ownerId: currentDeck.ownerId,
            Name: currentDeck.Name
         });
-        setUpdatedCards(cards);
         router.refresh();
+
     }
+
+    console.log(cards, updatedCards)
 
     return (
         <div className="text-lg items-center grid grid-cols-6 grid-rows-1 gap-4 w-full p-3 my-5 text-black border-black border-2">
