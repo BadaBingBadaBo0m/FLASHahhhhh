@@ -13,7 +13,6 @@ export default function Home() {
   const generateCards = async () => {
     const res = await randomDeck();
     setSlides(res)
-    console.log(res, "deck")
   }
   
   useEffect(() => {
@@ -32,11 +31,15 @@ export default function Home() {
             <div className='text-black font-bold text-2xl'>Flash is free to use for as long as you'd like</div>
           </div>
 
-
-
-          <div className='w-full h-[40rem] bg-background pt-12 flex justify-center'>
-            <div className='w-[70%] h-full'>
+          <div className='w-full h-[40rem] bg-background pt-12 flex justify-around'>
+            <div className='w-[55%] h-full'>
               <Carousel slides={deck?.Cards ? deck.Cards : [{ question: "Loading...", answer: "loading..." }]} />
+            </div>
+            <div className='w-[30%] text-black flex flex-col text-bold text-xl text-left justify-center'>
+                <h1 className='font-bold text-5xl mb-5'>
+                  Generate Cards with a button
+                </h1>
+                <p>Sometimes you don't want to have to create an entire deck of flashcards by hand. So we got you covered! We generate a deck of cards for the subject you want instantly! If you still want to make your own cards you of course still can.</p>
             </div>
           </div>
         </div>
