@@ -58,7 +58,7 @@ export default function Home() {
                 <p className='text-black text-bold text-lg -mt-5'>*Please don't spam</p>
               </div>
             </div>
-            <div className='w-[30%] text-black flex flex-col text-bold text-xl text-left justify-center'>
+            <div className='w-[30%] text-black flex flex-col text-bold text-xl -mt-32 text-left justify-center'>
                 <h1 className='font-bold text-5xl mb-5'>
                   Generate Cards with a button
                 </h1>
