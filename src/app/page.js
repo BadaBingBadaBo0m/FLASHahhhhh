@@ -40,6 +40,7 @@ export default function Home() {
             <div className='w-[55%] h-full'>
               <Carousel slides={deck?.Cards ? deck.Cards : [{ question: "Loading...", answer: "loading..." }]} />
               <button onClick={generateCardButton} className='text-2xl text-bold bg-purple text-white my-5 p-5 rounded-full hover:bg-fuchsia-950'>Generate Deck</button>
+              <p className='text-black text-bold text-lg -mt-5'>*Please don't spam</p>
             </div>
             <div className='w-[30%] text-black flex flex-col text-bold text-xl text-left justify-center'>
                 <h1 className='font-bold text-5xl mb-5'>
