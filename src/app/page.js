@@ -2,7 +2,7 @@
 
 import React, { useState, useEffect } from 'react'
 import Carousel from "@/components/Carousel";
-import { randomDeck } from './gemini';
+import { randomDeck, runGemini } from './gemini';
 import { useModal } from '@/context/Modal';
 import SignupForm from '@/components/SignupModal';
 
@@ -18,6 +18,13 @@ export default function Home() {
 
   const generateCardButton = async () => {
     setSlides([{ question: "Loading...", answer: "loading..." }]);
+    if (prompt) {
+      const res = await runGemini(prompt, 5);
+      setSlides(res);
+      setPrompt("");
+      return;
+    }
+
     generateCards()
   }
   
