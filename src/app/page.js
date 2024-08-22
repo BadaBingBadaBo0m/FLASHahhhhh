@@ -8,6 +8,7 @@ import SignupForm from '@/components/SignupModal';
 
 export default function Home() {
   const [deck, setSlides] = useState(null);
+  const [prompt, setPrompt] = useState("");
   const { setModalContent } = useModal();
 
   const generateCards = async () => {
@@ -37,10 +38,18 @@ export default function Home() {
           </div>
 
           <div className='w-full h-[40rem] bg-background pt-12 flex justify-around'>
-            <div className='w-[55%] h-full'>
+            <div className='w-[55%] h-full flex flex-col justify-center'>
               <Carousel slides={deck?.Cards ? deck.Cards : [{ question: "Loading...", answer: "loading..." }]} />
-              <button onClick={generateCardButton} className='text-2xl text-bold bg-purple text-white my-5 p-5 rounded-full hover:bg-fuchsia-950'>Generate Deck</button>
-              <p className='text-black text-bold text-lg -mt-5'>*Please don't spam</p>
+              <div className='flex flex-col justify-center items-center'>
+                <input 
+                  className='text-black text-xl mt-5 rounded-lg w-[30%]'
+                  value={prompt}
+                  onChange={(e) => setPrompt(e.target.value)}
+                  placeholder='Leave blank for random subject'
+                />
+                <button onClick={generateCardButton} className='text-2xl w-[30%]  text-bold mx-0 bg-purple text-white my-5 p-5 rounded-full hover:bg-fuchsia-950'>Generate Deck</button>
+                <p className='text-black text-bold text-lg -mt-5'>*Please don't spam</p>
+              </div>
             </div>
             <div className='w-[30%] text-black flex flex-col text-bold text-xl text-left justify-center'>
                 <h1 className='font-bold text-5xl mb-5'>
