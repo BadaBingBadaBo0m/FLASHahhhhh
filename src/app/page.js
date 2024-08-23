@@ -49,7 +49,7 @@ export default function Home() {
               <Carousel slides={deck?.Cards ? deck.Cards : [{ question: "Loading...", answer: "loading..." }]} />
               <div className='flex flex-col justify-center items-center'>
                 <input 
-                  className='text-black text-xl mt-5 rounded-lg w-[30%]'
+                  className='text-black text-xl mt-5 rounded-lg w-[34%] px-5 p-2'
                   value={prompt}
                   onChange={(e) => setPrompt(e.target.value)}
                   placeholder='Leave blank for random subject'
