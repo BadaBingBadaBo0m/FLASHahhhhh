@@ -31,7 +31,7 @@ export default function DeckPage() {
     } else return router.push('/');
   }
 
-  const editDeck = async (e) => {
+  const editDeckName = async (e) => {
     e.preventDefault();
     if (!newDeckName || newDeckName.length > 30) {
       if (!newDeckName) setDeckNameError("Deck Name is required.")
@@ -120,14 +120,14 @@ export default function DeckPage() {
                     </>
                 ) : (
                     <>
-                        <form className="flex items-center justify-around" onSubmit={editDeck}>
+                        <form className="flex items-center justify-around" onSubmit={editDeckName}>
                           <input
                             className=" text-black text-5xl w-[90%]"
                             value={newDeckName}
                             disabled={disableInput}
                             onChange={(e) => setNewDeckName(e.target.value)}
                             />
-                            <FaPen onClick={editDeck} title="Edit Deck" className="cursor-pointer text-purple" />
+                            <FaPen onClick={editDeckName} title="Edit Deck" className="cursor-pointer text-purple" />
                         </form>
                     </>
                 )}
