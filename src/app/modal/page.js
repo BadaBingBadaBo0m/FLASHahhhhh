@@ -20,7 +20,6 @@ const Modals = () => {
     <>
       <div>
         <h1>bruh</h1>
-
         <button onClick={openSignup}>Open Signup</button>
         <button onClick={openLogin}>Open Login</button>
       </div>

@@ -1,12 +1,10 @@
 "use client"
-import Image from "next/image";
 import React, { useState, useEffect } from "react";
 import {  doc, updateDoc, getDoc } from "firebase/firestore";
 import { db } from "../../../firebase";
 import { FaPen } from "react-icons/fa";
 import { usePathname } from 'next/navigation'
 import { useRouter } from 'next/navigation';
-import { useModal } from '@/context/Modal';
 import CardComponent from "@/components/CardComponent";
 import Link from 'next/link';
 
@@ -18,6 +16,7 @@ export default function DeckPage() {
   const [currentDeck, setCurrentDeck] = useState({});
   const [newDeckName, setNewDeckName] = useState("");
   const [newDeckDescription, setNewDeckDescription] = useState(currentDeck.Description);
+  const [deckNameError, setDeckNameError] = useState("");
   const [disableInput, setDisableInput] = useState(true);
   const userInfoObject = typeof window !== 'undefined' ? localStorage.getItem('User-Info') : "";
   const userInfo = userInfoObject ? JSON.parse(userInfoObject) : "";
@@ -34,7 +33,13 @@ export default function DeckPage() {
 
   const editDeck = async (e) => {
     e.preventDefault();
-    if (!newDeckName) return setDisableInput(true);
+    if (!newDeckName || newDeckName.length > 30) {
+      if (!newDeckName) setDeckNameError("Deck Name is required.")
+
+      if (newDeckName.length > 30) setDeckNameError("Deck name must be less than 30 characters.");
+      
+      return;
+    }
     
     await updateDoc(currentSet, {
         Name: newDeckName,
@@ -44,7 +49,7 @@ export default function DeckPage() {
     })
 
     setDisableInput(true)
-    
+    setDeckNameError("");
     getOneDoc();
   }
 
@@ -99,18 +104,24 @@ export default function DeckPage() {
 
   return (
     <>
+      {deckNameError ? (
+        <>
+          <p className='text-red-700 text-2xl text-center mt-5'>{deckNameError}</p>
+        </>
+      ) : (
+        <></>
+      )}
         <div className="flex justify-center">
             <div className="flex justify-center items-center my-5  mx-0 ">
                 {disableInput ? (
                     <>
                         <h1 className="text-5xl mx-5 text-purple">{currentDeck.Name}</h1>
                         <FaPen onClick={disableInputFunction} title="Edit Deck" className="cursor-pointer text-purple" />
-                        
                     </>
                 ) : (
                     <>
                         <form className="flex items-center justify-around" onSubmit={editDeck}>
-                            <input
+                          <input
                             className=" text-black text-5xl w-[90%]"
                             value={newDeckName}
                             disabled={disableInput}

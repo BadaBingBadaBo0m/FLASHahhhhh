@@ -17,13 +17,12 @@ const CreateDeckForm = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    if (!name || name.length > 30 || description.length > 50 || description.length == 0) {
+    if (!name || name.length > 30 || description.length > 100 || description.length == 0) {
       if (!name || name.length > 30) setNameError("Name must be between 1 and 30 characters");
-
 
       if (name && name.length <= 30) setNameError("");
 
-      if (description.length > 50) setDescriptionError("Description must be less than 50 characters");
+      if (description.length > 100) setDescriptionError("Description must be less than 100 characters");
 
       if (description.length == 0) setDescriptionError("Description is required")
 

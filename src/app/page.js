@@ -35,15 +35,12 @@ export default function Home() {
   return (
     <div className="flex h-full flex-col items-center justify-between ">
       <div id="content-container" className="w-full min-h-screen flex flex-col items-center">
-
         <div className='bg-Navbar w-full flex flex-col items-center top-[0%] text-center absolute pt-20'>
-
           <div className='flex flex-col gap-8 items-center pb-8'>
             <h1 className='text-black font-bold text-6xl'>Studying made <span className='text-purple'>easy</span></h1>
             <button className='bg-purple p-7 rounded-lg w-56 text-xl hover:bg-fuchsia-950 text-bold' onClick={() => setModalContent(<SignupForm />)}>GET STARTED</button>
             <div className='text-black font-bold text-2xl'>Flash is free to use for as long as you'd like</div>
           </div>
-
           <div className='w-full h-[40rem] bg-background pt-12 flex justify-around'>
             <div className='w-[55%] h-full flex flex-col justify-center'>
               <Carousel slides={deck?.Cards ? deck.Cards : [{ question: "Loading...", answer: "loading..." }]} />

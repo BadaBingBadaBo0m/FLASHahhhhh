@@ -6,7 +6,6 @@ import { getDoc, doc } from 'firebase/firestore';
 import { db } from '@/app/firebase';
 import Carousel from '@/components/Carousel';
 
-
 const StudyDeck = () => {
   const pathname = usePathname().split('/');
   const deckId = pathname[pathname.length - 1];
@@ -29,6 +28,7 @@ const StudyDeck = () => {
       <div className="w-[60%] h-screen m-auto pt-8 pb-40 ">
         <Carousel slides={currentDeck.Cards} />
       </div>
+      
     </div>
   )
 };
