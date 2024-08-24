@@ -8,7 +8,7 @@ import { db } from "@/app/firebase";
 
 const GenerateDeckForm = ({ ownerId }) => {
   const [subject, setSubject] = useState("");
-  const [count, setCount] = useState(null);
+  const [count, setCount] = useState("");
   const [subjectError, setSubjectError] = useState();
   const [countError, setCountError] = useState();
   const { closeModal } = useModal();
@@ -38,7 +38,6 @@ const GenerateDeckForm = ({ ownerId }) => {
 
     setSubjectError("");
     setCountError("")
-
     closeModal();
   }
 

@@ -23,7 +23,7 @@ const NavBar = () => {
 
   const SignOutUser = () => {
     auth.signOut();
-    console.log("signed out user", currentUser)
+    localStorage.removeItem("User-Info")
     router.push('/')
     router.refresh();
   }

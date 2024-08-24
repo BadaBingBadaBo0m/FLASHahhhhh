@@ -38,7 +38,6 @@ const CreateDeckForm = () => {
       Cards: [],
       ownerId: currentUser.uid
     });
-    console.log('added doc')
     setName("");
     closeModal();
   }

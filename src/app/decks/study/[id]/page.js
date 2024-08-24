@@ -13,10 +13,6 @@ const StudyDeck = () => {
   const currentSet = doc(db, "Decks", deckId);
   const [currentDeck, setCurrentDeck] = useState({ Cards: [{ question: "Loading...", answer: "loading..." }] });
 
-  const print = () => {
-    console.log(currentDeck)
-  }
-
   const getOneDoc = async () => {
     const currentSetSnap = await getDoc(currentSet);
     setCurrentDeck(currentSetSnap.data());

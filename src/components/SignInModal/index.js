@@ -5,12 +5,14 @@ import { auth } from '@/app/firebase';
 import { signInWithEmailAndPassword } from 'firebase/auth';
 import { useModal } from '@/context/Modal';
 import SignupForm from '../SignupModal';
+import { useRouter } from 'next/navigation';
 
 const SignInForm = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const { setModalContent, closeModal } = useModal();
   const [errors, setErrors] = useState("");
+  const router = useRouter();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -21,6 +23,8 @@ const SignInForm = () => {
         const user = userCredential.user;
         closeModal();
         setErrors("");
+        localStorage.setItem('User-Info', JSON.stringify(user));
+        router.refresh()
         return user;
       })
       .catch((error) => {

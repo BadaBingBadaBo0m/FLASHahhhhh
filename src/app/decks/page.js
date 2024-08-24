@@ -18,27 +18,29 @@ const FlashCardHome = () => {
   const router = useRouter();
   const currentUser = auth.currentUser;
 
-  const fetchCategories = auth.onAuthStateChanged(async (currentUser) => {
-    // setCurrentUser(user);
-    if (currentUser) {
-      // Fetch categories when user logs in
-      const q = query(collection(db, "Decks"), where("ownerId", "==", currentUser.uid));
-      const querySnapshot = await getDocs(q);
-      const categories = [];
 
-      querySnapshot.forEach((doc) => {
-        categories.push({ id: doc.id, ...doc.data() });
-      });
-      setDecks(categories);
-    } else {
-      // Clear categories when user logs out
-      setDecks([]);
-    }
-  });
+  const fetchDecks = async () => {
+      const userInfoObject = localStorage.getItem('User-Info')
+      const userInfo = JSON.parse(userInfoObject)
+
+      if (userInfo) {
+        const q = query(collection(db, "Decks"), where("ownerId", "==", userInfo.uid));
+
+        const unsubcribe = onSnapshot(q, (querySnapshot) => {
+          const categories = [];
+          querySnapshot.forEach((doc) => {
+            categories.push({ id: doc.id, ...doc.data() });
+          });
+          setDecks(categories);
+        })
+      } else return setDecks([]);
+  };
 
   useEffect(() => {
-    return () => fetchCategories();
+    fetchDecks();
   }, []);
+
+  console.log(decks)
 
   return (
     <div>
