@@ -10,17 +10,17 @@ import { useModal } from '@/context/Modal';
 import CreateDeckForm from '@/components/CreateDeck';
 import DeleteDeckForm from '@/components/DeleteDeck';
 import GenerateDeckForm from '@/components/GenerateDeckFrom';
+import SignInForm from '@/components/SignInModal';
 
 const FlashCardHome = () => {
   const [decks, setDecks] = useState([]);
   const { setModalContent } = useModal();
   const router = useRouter();
   const currentUser = auth.currentUser;
+  const userInfoObject = typeof window !== 'undefined' ? localStorage.getItem('User-Info') : "";
+  const userInfo = userInfoObject ? JSON.parse(userInfoObject) : "";
 
   const fetchDecks = async () => {
-      const userInfoObject = localStorage.getItem('User-Info')
-      const userInfo = JSON.parse(userInfoObject)
-
       if (userInfo) {
         const q = query(collection(db, "Decks"), where("ownerId", "==", userInfo.uid));
 
@@ -45,10 +45,17 @@ const FlashCardHome = () => {
       </div>
 
       <div className='flex flex-col gap-7 items-center text-black mt-5'>
-        <div id='create-deck' className='flex items-center'>
-          <button onClick={() => setModalContent(<CreateDeckForm />)} className='bg-purple text-white font-bold text-1xl p-4 rounded-xl mr-4 w-52 hover:bg-fuchsia-950'>Create new deck</button>
-          <button onClick={() => setModalContent(<GenerateDeckForm ownerId={currentUser?.uid} />)} className='bg-purple text-white font-bold text-1xl p-4 rounded-xl w-52 hover:bg-fuchsia-950'>Generate new deck</button>
-        </div>
+        {userInfo ? (
+          <div id='create-deck' className='flex items-center'>
+            <button onClick={() => setModalContent(<CreateDeckForm />)} className='bg-purple text-white font-bold text-1xl p-4 rounded-xl mr-4 w-52 hover:bg-fuchsia-950'>Create new deck</button>
+            <button onClick={() => setModalContent(<GenerateDeckForm ownerId={currentUser?.uid} />)} className='bg-purple text-white font-bold text-1xl p-4 rounded-xl w-52 hover:bg-fuchsia-950'>Generate new deck</button>
+          </div>
+        ) : (
+          <div id='create-deck' className='flex items-center'>
+            <button className='bg-purple text-white font-bold text-1xl p-4 rounded-xl mr-4 w-52 hover:bg-fuchsia-950' onClick={() => setModalContent(<SignInForm />)}>Create new deck</button>
+            <button className='bg-purple text-white font-bold text-1xl p-4 rounded-xl w-52 hover:bg-fuchsia-950' onClick={() => setModalContent(<SignInForm />)}>Generate new deck</button>
+         </div>
+        )}
 
         {decks.map(deck => (
           <div key={`DeckList ${deck.Name} ${deck.id}`} className='flex items-center justify-between gap-5 bg-white text-black w-[70%] h-20 rounded-3xl p-8'>

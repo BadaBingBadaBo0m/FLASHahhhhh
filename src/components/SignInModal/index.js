@@ -24,7 +24,7 @@ const SignInForm = () => {
         closeModal();
         setErrors("");
         localStorage.setItem('User-Info', JSON.stringify(user));
-        router.refresh()
+        router.refresh();
         return user;
       })
       .catch((error) => {
@@ -39,7 +39,7 @@ const SignInForm = () => {
 
   return (
     <div className='text-black'>
-      <form onSubmit={handleSubmit} className="flex flex-col w-96 h-96 p-8 items-center justify-between border-2 border-border-blue rounded-2xl bg-nav-background">
+      <form onSubmit={handleSubmit} className="flex flex-col w-96 h-96 p-8 items-center justify-between border-2 border-border-blue rounded-2xl bg-nav-background border-0">
         <h1 className='text-3xl'>Sign In</h1>
         {errors ? (
           <>
@@ -70,6 +70,7 @@ const SignInForm = () => {
         <button className='bg-purple text-white w-36 h-11 rounded-full font-bold text-lg' type="submit" onClick={handleSubmit}>Sign In</button>
         <div>Don't have an account? <a className='cursor-pointer text-blue-500' onClick={() => setModalContent(<SignupForm />)}>Sign up</a>!</div>
       </form>
+      <p className='ml-10'>If logging in on decks page please refresh</p>
     </div>
   )
 }

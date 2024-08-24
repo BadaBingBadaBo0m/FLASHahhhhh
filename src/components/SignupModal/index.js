@@ -21,6 +21,7 @@ const SignupForm = () => {
         const user = userCredential.user;
         closeModal();
         localStorage.setItem('User-Info', JSON.stringify(user));
+        router.push('/decks')
         return user;
       })
       .catch((error) => {
@@ -32,7 +33,7 @@ const SignupForm = () => {
 
   return (
     <div className='text-black'>
-      <form onSubmit={handleSubmit} className="flex flex-col w-96 h-96 p-8 items-center justify-between border-2 border-border-blue rounded-2xl bg-nav-background">
+      <form onSubmit={handleSubmit} className="flex flex-col w-96 h-96 p-8 items-center justify-between border-2 border-border-blue rounded-2xl bg-nav-background border-0">
         <h1 className='text-3xl'>Sign up</h1>
 
         <input
@@ -67,6 +68,7 @@ const SignupForm = () => {
         <button className='bg-purple text-white w-36 h-11 rounded-full font-bold text-lg' type="submit" onClick={handleSubmit}>Sign up</button>
         <div>Already have an account? <a className='cursor-pointer text-blue-500' onClick={() => setModalContent(<SignInForm />)}>Login</a>!</div>
       </form>
+      <p className='ml-10'>If logging in on decks page please refresh</p>
     </div>
   )
 }

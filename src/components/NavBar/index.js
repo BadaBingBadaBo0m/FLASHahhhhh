@@ -25,7 +25,6 @@ const NavBar = () => {
     auth.signOut();
     localStorage.removeItem("User-Info")
     router.push('/')
-    router.refresh();
   }
 
   return (
