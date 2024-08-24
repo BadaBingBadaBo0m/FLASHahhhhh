@@ -63,7 +63,6 @@ const FlashCardHome = () => {
               <p>{deck.Description}</p>
             </div>
 
-
             <div className='flex gap-1 text-white'>
               <Link href={`/decks/edit/${deck.id}`}>
                 <button className='bg-purple w-20 h-12 rounded-l-lg hover:bg-fuchsia-950'>Edit Deck</button>

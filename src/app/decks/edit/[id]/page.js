@@ -19,19 +19,17 @@ export default function DeckPage() {
   const [newDeckName, setNewDeckName] = useState("");
   const [newDeckDescription, setNewDeckDescription] = useState(currentDeck.Description);
   const [disableInput, setDisableInput] = useState(true);
+  const userInfoObject = typeof window !== 'undefined' ? localStorage.getItem('User-Info') : "";
+  const userInfo = userInfoObject ? JSON.parse(userInfoObject) : "";
 
   const getOneDoc = async () => {
-    const userInfoObject = localStorage.getItem('User-Info')
-    const userInfo = JSON.parse(userInfoObject)
     const currentSetSnap = await getDoc(currentSet);
 
-    if (userInfo) {
-      if (userInfo.uid === currentSetSnap.data().ownerId) {
-        setCurrentDeck(currentSetSnap.data());
-        setNewDeckName(currentDeck.Name);
-        setNewDeckDescription(currentSetSnap.data().Description);
-      } else return router.push('/');
-    }
+    if (userInfo.uid === currentSetSnap.data().ownerId) {
+      setCurrentDeck(currentSetSnap.data());
+      setNewDeckName(currentDeck.Name);
+      return setNewDeckDescription(currentSetSnap.data().Description);
+    } else return router.push('/');
   }
 
   const editDeck = async (e) => {
@@ -51,6 +49,7 @@ export default function DeckPage() {
   }
 
   useEffect(() => {
+    if (!userInfo) return router.push('/');
     getOneDoc();
     setNewDeckName(currentDeck.Name)
   }, []);
