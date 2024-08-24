@@ -1,10 +1,11 @@
 "use client"
 import Image from "next/image";
 import React, { useState, useEffect } from "react";
-import { collection, addDoc, query, onSnapshot, orderBy, doc, setDoc, updateDoc, getDoc } from "firebase/firestore";
-import { db, auth } from "../../../firebase";
+import {  doc, updateDoc, getDoc } from "firebase/firestore";
+import { db } from "../../../firebase";
 import { FaPen } from "react-icons/fa";
 import { usePathname } from 'next/navigation'
+import { useRouter } from 'next/navigation';
 import { useModal } from '@/context/Modal';
 import CardComponent from "@/components/CardComponent";
 import Link from 'next/link';
@@ -13,16 +14,24 @@ export default function DeckPage() {
   const pathname = usePathname().split('/');
   const deckId = pathname[pathname.length - 1];
   const currentSet = doc(db, "Decks", deckId);
+  const router = useRouter();
   const [currentDeck, setCurrentDeck] = useState({});
   const [newDeckName, setNewDeckName] = useState("");
   const [newDeckDescription, setNewDeckDescription] = useState(currentDeck.Description);
   const [disableInput, setDisableInput] = useState(true);
 
   const getOneDoc = async () => {
+    const userInfoObject = localStorage.getItem('User-Info')
+    const userInfo = JSON.parse(userInfoObject)
     const currentSetSnap = await getDoc(currentSet);
-    setCurrentDeck(currentSetSnap.data());
-    setNewDeckName(currentDeck.Name);
-    setNewDeckDescription(currentSetSnap.data().Description);
+
+    if (userInfo) {
+      if (userInfo.uid === currentSetSnap.data().ownerId) {
+        setCurrentDeck(currentSetSnap.data());
+        setNewDeckName(currentDeck.Name);
+        setNewDeckDescription(currentSetSnap.data().Description);
+      } else return router.push('/');
+    }
   }
 
   const editDeck = async (e) => {

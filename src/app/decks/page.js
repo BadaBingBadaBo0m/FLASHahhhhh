@@ -2,7 +2,7 @@
 
 import React, { useEffect, useState } from 'react'
 import Link from 'next/link';
-import { collection, addDoc, query, onSnapshot, where, orderBy, doc, setDoc, updateDoc, getDocs, categoriesRef, onAuthStateChanged } from "firebase/firestore";
+import { collection, query, onSnapshot, where} from "firebase/firestore";
 import { db } from "../firebase";
 import { auth } from '../firebase';
 import { useRouter } from 'next/navigation';
@@ -14,10 +14,8 @@ import GenerateDeckForm from '@/components/GenerateDeckFrom';
 const FlashCardHome = () => {
   const [decks, setDecks] = useState([]);
   const { setModalContent } = useModal();
-  const [queryObject, setQueryObject] = useState(null);
   const router = useRouter();
   const currentUser = auth.currentUser;
-
 
   const fetchDecks = async () => {
       const userInfoObject = localStorage.getItem('User-Info')
@@ -39,8 +37,6 @@ const FlashCardHome = () => {
   useEffect(() => {
     fetchDecks();
   }, []);
-
-  console.log(decks)
 
   return (
     <div>
@@ -73,7 +69,6 @@ const FlashCardHome = () => {
                 <button className='bg-purple w-20 h-12 rounded-l-lg hover:bg-fuchsia-950'>Edit Deck</button>
               </Link>
               <button className='bg-purple w-20 h-12 rounded-r-lg hover:bg-fuchsia-950' onClick={() => setModalContent(<DeleteDeckForm deck={deck} currentUser={currentUser} />)}>Delete Deck</button>
-              {/* <button onClick={() => console.log(deck)} className='text-black'>Print</button> */}
             </div>
           </div>
         ))}
